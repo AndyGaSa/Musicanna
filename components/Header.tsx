@@ -24,7 +24,7 @@ const Header = () => {
           <div className="flex items-center gap-1">
             <img
               className="w-8 h-8 rounded-full"
-              src="https://www.noormohammad.live/static/media/roundedProfile.477a194221d255c8ce26.png"
+              src="https://yt3.googleusercontent.com/ytc/AGIKgqNU9jdoeaLwTLLXS6sJlHtddo9mbH8DL-80VWtC1A=s900-c-k-c0x00ffffff-no-rj"
               alt="logo"
             />
             <p className="text-sm font-medium">Hello Stranger!</p>

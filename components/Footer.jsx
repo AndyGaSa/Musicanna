@@ -17,7 +17,7 @@ const Footer = () => {
           <Image src={logoLight} width={80} height={80} alt="logo" />
           <p className="flex items-center text-sm font-titleFont gap-1">
             <AiOutlineCopyrightCircle className="mt-[1px]" />
-            reactBD || all rights reserved
+            Andy Garcia || all rights reserved
           </p>
         </div>
 
