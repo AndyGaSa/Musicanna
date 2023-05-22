@@ -26,6 +26,21 @@ const Post = ({ post }: Props) => {
           <h2 className="font-bodyFont  text-[18px] text-gray-500 mb-2">
             {post.description}
           </h2>
+          <div className="flex items-center gap-2">
+            <img
+              className="rounded-full w-12 h-12 object-cover bg-red-400"
+              src={urlFor(post.author.image).url()}
+              alt={post.author.name}
+            />
+            <p className="font-bodyFont text-base">
+              Publicat per{' '}
+              <span className="font-bold text-secondaryColor">
+                {post.author.name}
+              </span>{' '}
+              - Published at {new Date(post.publishedAt).toLocaleDateString()}
+            </p>
+          </div>
+          <div></div>
         </article>
       </div>
       <Footer />
