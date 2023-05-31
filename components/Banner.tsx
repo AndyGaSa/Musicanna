@@ -1,10 +1,10 @@
-import Image from "next/image";
-import Slider from "react-slick";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import bannerImgOne from "../public/images/bannerImgOne.jpg";
-import bannerImgTwo from "../public/images/bannerImgTwo.jpg";
-import bannerImgThree from "../public/images/bannerImgThree.jpg";
-import bannerImgFour from "../public/images/bannerImgFour.jpg";
+import Image from 'next/image';
+import Slider from 'react-slick';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import bannerImgOne from '../public/images/bannerImgOne.jpg';
+import bannerImgTwo from '../public/images/bannerImgTwo.jpg';
+import bannerImgThree from '../public/images/bannerImgThree.jpg';
+import bannerImgFour from '../public/images/bannerImgFour.jpg';
 
 function SampleNextArrow(props: any) {
   const { onClick } = props;
@@ -67,32 +67,36 @@ const Banner = () => {
           <Image
             className="w-full h-auto md:h-[650px] object-cover"
             src={bannerImgOne}
-            loading={"eager"}
+            loading={'eager'}
             alt="bannerImgOne"
+            data-testid="bannerImgOne"
           />
         </div>
         <div>
           <Image
             className="w-full h-auto md:h-[650px] object-cover"
             src={bannerImgTwo}
-            loading={"lazy"}
+            loading={'lazy'}
             alt="bannerImgTwo"
+            data-testid="bannerImgTwo"
           />
         </div>
         <div>
           <Image
             className="w-full h-auto md:h-[650px] object-cover"
             src={bannerImgThree}
-            loading={"lazy"}
+            loading={'lazy'}
             alt="bannerImgThree"
+            data-testid="bannerImgThree"
           />
         </div>
         <div>
           <Image
             className="w-full h-auto md:h-[650px] object-cover"
             src={bannerImgFour}
-            loading={"lazy"}
+            loading={'lazy'}
             alt="bannerImgFour"
+            data-testid="bannerImgFour"
           />
         </div>
       </Slider>

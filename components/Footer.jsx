@@ -1,13 +1,13 @@
-import Image from "next/image";
-import logoLight from "../public/images/logoLight.png";
+import Image from 'next/image';
+import logoLight from '../public/images/logoLight.png';
 import {
   BsFacebook,
   BsTwitter,
   BsYoutube,
   BsLinkedin,
   BsGithub,
-} from "react-icons/bs";
-import { AiOutlineCopyrightCircle } from "react-icons/ai";
+} from 'react-icons/bs';
+import { AiOutlineCopyrightCircle } from 'react-icons/ai';
 
 const Footer = () => {
   return (
@@ -22,11 +22,26 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-6">
-          <BsYoutube className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer" />
-          <BsFacebook className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer" />
-          <BsGithub className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer" />
-          <BsLinkedin className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer" />
-          <BsTwitter className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer" />
+          <BsYoutube
+            data-testid="youtube"
+            className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
+          />
+          <BsFacebook
+            data-testid="facebook"
+            className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
+          />
+          <BsGithub
+            data-testid="github"
+            className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
+          />
+          <BsLinkedin
+            data-testid="linkedin"
+            className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
+          />
+          <BsTwitter
+            data-testid="twitter"
+            className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
+          />
         </div>
       </div>
     </div>

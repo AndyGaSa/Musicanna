@@ -1,7 +1,4 @@
 import React from 'react';
-import { MdOutlineMonitor } from 'react-icons/md';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { GoComment } from 'react-icons/go';
 
 const BannerBottom = () => {
   return (
@@ -19,26 +16,6 @@ const BannerBottom = () => {
           Un món d'imaginació, creativitat, contes i cançons
         </h4>
       </div>
-      {/*<div className="w-full lg:w-[40%] flex items-center justify-center gap-2 lg:gap-8">
-        <div className="w-full flex flex-col items-center group">
-          <MdOutlineMonitor className="text-4xl text-gray-300 group-hover:text-white duration-300" />
-          <p className="text-xs md:text-sm font-titleFont text-white/50 group-hover:text-white">
-            watch on youtube
-          </p>
-        </div>
-        <div className="w-full flex flex-col items-center justify-center group">
-          <IoMdHeartEmpty className="text-4xl text-gray-300 group-hover:text-white duration-300" />
-          <p className="text-xs md:text-sm font-titleFont text-white/50 group-hover:text-white">
-            like our contents
-          </p>
-        </div>
-        <div className="w-full flex flex-col items-center justify-center group">
-          <GoComment className="text-4xl text-gray-300 group-hover:text-white duration-300" />
-          <p className="text-xs md:text-sm font-titleFont text-white/50 group-hover:text-white">
-            place comments
-          </p>
-        </div>
-  </div>*/}
     </div>
   );
 };

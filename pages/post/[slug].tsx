@@ -40,7 +40,7 @@ const Post = ({ post }: Props) => {
               - Published at {new Date(post.publishedAt).toLocaleDateString()}
             </p>
           </div>
-          <div></div>
+          <div className="mt-10"></div>
         </article>
       </div>
       <Footer />
