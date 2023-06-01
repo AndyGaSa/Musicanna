@@ -16,7 +16,7 @@ export default function Home({ posts }: Props) {
   return (
     <div>
       <Head>
-        <title>My Blog | Explore the new horizon</title>
+        <title>Musicanna</title>
         <link rel="icon" href="/smallLogo.ico" />
       </Head>
 
@@ -40,7 +40,7 @@ export default function Home({ posts }: Props) {
                   <Image
                     width={380}
                     height={350}
-                    src={urlFor(post.mainImage).url()!}
+                    src={urlFor(post.mainImage)?.url()!}
                     alt={post.title}
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-100 duration-300 group-hover:scale-110"
                   />
@@ -50,7 +50,7 @@ export default function Home({ posts }: Props) {
                     <p>{post.title}</p>
                     <img
                       className="w-12 h-12 rounded-full object-cover"
-                      src={urlFor(post.author.image).url()!}
+                      src={urlFor(post.author.image)?.url()!}
                       alt="authorImg"
                     />
                   </div>
@@ -84,10 +84,20 @@ export const getServerSideProps = async () => {
       mainImage,
       slug
   }`;
-  const posts = await sanityClient.fetch(query);
-  return {
-    props: {
-      posts,
-    },
-  };
+  try {
+    const posts = await sanityClient.fetch(query);
+    return {
+      props: {
+        posts,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        posts: {
+          status: 'error',
+        },
+      },
+    };
+  }
 };

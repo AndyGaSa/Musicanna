@@ -7,7 +7,6 @@ const BannerBottom = () => {
         <p className="text-xl uppercase font-bodyFont font-semibold text-white">
           MUSICANNA
         </p>
-        z
         <h3 className="font-bold text-xl md:text-3xl">
           Cançoncs, contes verticals i contacontes per a nens i nenes de 0 a 6
           anys
