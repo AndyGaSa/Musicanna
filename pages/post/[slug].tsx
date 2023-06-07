@@ -3,13 +3,13 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
 import { Post } from '../../typings';
-import { GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 interface Props {
   post: Post;
 }
 
-const Post = ({ post }: Props) => {
+const Post: React.FC<Props> = ({ post }: Props) => {
   return (
     <div>
       <Header />
@@ -50,14 +50,14 @@ const Post = ({ post }: Props) => {
 
 export default Post;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const query = `*[_type == "post"]{
         _id,
         slug{
             current
         }
     }`;
-  const posts = await sanityClient.fetch(query);
+  const posts: Post[] = await sanityClient.fetch(query);
   const paths = posts.map((post: Post) => ({
     params: {
       slug: post.slug.current,
@@ -69,7 +69,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const query = `*[_type == "post" && slug.current == $slug][0]{
         _id,
         publishedAt,
@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         body
     }`;
 
-  const post = await sanityClient.fetch(query, {
+  const post: Post = await sanityClient.fetch(query, {
     slug: params?.slug,
   });
 
