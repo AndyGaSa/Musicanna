@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "next lint"
   },
   "dependencies": {
     "@portabletext/react": "^3.0.0",

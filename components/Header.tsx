@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import logoDark from "../public/images/logoDark.png";
+import Image from 'next/image';
+import Link from 'next/link';
+import logoDark from '../public/images/logoDark.png';
 
 const Header = () => {
   return (
@@ -22,7 +22,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-8 text-lg">
           <div className="flex items-center gap-1">
-            <img
+            <Image
               className="w-8 h-8 rounded-full"
               src="https://yt3.googleusercontent.com/ytc/AGIKgqNU9jdoeaLwTLLXS6sJlHtddo9mbH8DL-80VWtC1A=s900-c-k-c0x00ffffff-no-rj"
               alt="logo"

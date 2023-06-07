@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
 import { Post } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
 
 interface Props {
   post: Post;
@@ -13,7 +14,7 @@ const Post: React.FC<Props> = ({ post }: Props) => {
   return (
     <div>
       <Header />
-      <img
+      <Image
         className="w-full h-96 object-cover"
         src={urlFor(post.mainImage).url()!}
         alt={post.title}
@@ -27,7 +28,7 @@ const Post: React.FC<Props> = ({ post }: Props) => {
             {post.description}
           </h2>
           <div className="flex items-center gap-2">
-            <img
+            <Image
               className="rounded-full w-12 h-12 object-cover bg-red-400"
               src={urlFor(post.author.image).url()}
               alt={post.author.name}

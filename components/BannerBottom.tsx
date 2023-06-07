@@ -12,7 +12,7 @@ const BannerBottom = () => {
           anys
         </h3>
         <h4 className="text-xl text-white/80">
-          Un món d'imaginació, creativitat, contes i cançons
+          Un món d&#39;imaginació, creativitat, contes i cançons
         </h4>
       </div>
     </div>
