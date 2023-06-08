@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
-import { Post } from '../../typings';
+import { Post, Category } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 
@@ -56,18 +56,21 @@ const Post: React.FC<Props> = ({ post }: Props) => {
 export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const query = `*[_type == "post"]{
-        _id,
-        slug{
-            current
-        }
-    }`;
-  const posts: Post[] = await sanityClient.fetch(query);
-  const paths = posts.map((post: Post) => ({
+  const query = `*[_type == "category"]{
+    _id,
+      title
+  }`;
+  const categories: Category[] = await sanityClient.fetch(query);
+
+  const paths = categories.map((category: Category) => ({
     params: {
-      slug: post.slug.current,
+      category: category.title.toLowerCase().replace(/ /g, ''),
     },
   }));
+  console.log(
+    'miPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAP',
+    paths
+  );
   return {
     paths,
     fallback: false,
@@ -75,6 +78,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  console.log(
+    'miPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAP',
+    params
+  );
   const query = `*[_type == "post" && slug.current == $slug][0]{
         _id,
         publishedAt,

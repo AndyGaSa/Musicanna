@@ -52,6 +52,8 @@ export default function Home({ posts }: Props) {
                       className="w-12 h-12 rounded-full object-cover"
                       src={urlFor(post.author.image)?.url()!}
                       alt="authorImg"
+                      width={30}
+                      height={30}
                     />
                   </div>
                   <p className="py-2 px-4 text-base">
