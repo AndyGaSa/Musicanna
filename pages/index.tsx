@@ -9,8 +9,14 @@ import { sanityClient, urlFor } from '../sanity';
 import { Post } from '../typings';
 import Link from 'next/link';
 
+interface ServiceError{
+  statusCode: number;
+  message: string;
+}
+
 interface Props {
-  posts: [Post];
+  posts: Post[];
+  error?: ServiceError;
 }
 export default function Home({ posts }: Props) {
   return (
@@ -50,13 +56,13 @@ export default function Home({ posts }: Props) {
                     <p>{post.title}</p>
                     <img
                       className="w-12 h-12 rounded-full object-cover"
-                      src={urlFor(post.author.image)?.url()!}
+                      src={urlFor(post.author?.image)?.url()!}
                       alt="authorImg"
                     />
                   </div>
                   <p className="py-2 px-4 text-base">
                     {post.description.substring(0, 60)}... by -
-                    <span className="font-semibold">{post.author.name}</span>
+                    <span className="font-semibold">{post.author?.name}</span>
                   </p>
                 </div>
               </div>
@@ -72,7 +78,7 @@ export default function Home({ posts }: Props) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async () :Promise<{props:Props}> => {
   const query = `*[_type == "post"]{
     _id,
     title,
@@ -94,9 +100,11 @@ export const getServerSideProps = async () => {
   } catch (error) {
     return {
       props: {
-        posts: {
-          status: 'error',
-        },
+        posts: [],
+        error: {
+          statusCode:401,
+          message:error.message,
+        }
       },
     };
   }
