@@ -8,11 +8,11 @@ const BannerBottom = () => {
           MUSICANNA
         </p>
         <h3 className="font-bold text-xl md:text-3xl">
-          Cançoncs, contes verticals i contacontes per a nens i nenes de 0 a 6
+          Cançons, contes verticals i contacontes per a nens i nenes de 0 a 6
           anys
         </h3>
         <h4 className="text-xl text-white/80">
-          Un món d'imaginació, creativitat, contes i cançons
+          Un món d&#39;imaginació, creativitat, contes i cançons
         </h4>
       </div>
     </div>

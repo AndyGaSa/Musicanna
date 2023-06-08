@@ -18,3 +18,8 @@ export interface Post {
   };
   body: [object];
 }
+
+export interface Category {
+  _id: string;
+  title: string;
+}

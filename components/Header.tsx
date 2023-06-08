@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import logoDark from "../public/images/logoDark.png";
+import Image from 'next/image';
+import Link from 'next/link';
+import logoDark from '../public/images/logoDark.png';
 
 const Header = () => {
   return (
@@ -13,21 +13,31 @@ const Header = () => {
         </Link>
         <div>
           <ul className="hidden lg:inline-flex gap-8 uppercase text-sm font-semibold">
-            <li className="headerLi">Home</li>
-            <li className="headerLi">Posts</li>
-            <li className="headerLi">Pages</li>
-            <li className="headerLi">Features</li>
-            <li className="headerLi">Contact</li>
+            <li className="headerLi">
+              <Link href="/">Inici</Link>
+            </li>
+            <li className="headerLi">
+              {' '}
+              <Link key="songs" href={`/categories/songs`}>
+                Cançons
+              </Link>
+            </li>
+
+            <li className="headerLi">Contes</li>
+            <li className="headerLi">Comptacontes</li>
+            <li className="headerLi">Contacte</li>
           </ul>
         </div>
         <div className="flex items-center gap-8 text-lg">
           <div className="flex items-center gap-1">
-            <img
+            <Image
               className="w-8 h-8 rounded-full"
               src="https://yt3.googleusercontent.com/ytc/AGIKgqNU9jdoeaLwTLLXS6sJlHtddo9mbH8DL-80VWtC1A=s900-c-k-c0x00ffffff-no-rj"
               alt="logo"
+              width={30}
+              height={30}
             />
-            <p className="text-sm font-medium">Hello Stranger!</p>
+            <p className="text-sm font-medium">Benvingut!</p>
           </div>
 
           <button className="uppercase text-sm border-[1px] border-primaryColor hover:border-secondaryColor px-4 py-1 font-semibold hover:text-white rounded-md hover:bg-secondaryColor transition-all duration-300 active:bg-yellow-600">
