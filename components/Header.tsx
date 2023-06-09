@@ -18,7 +18,7 @@ const Header = () => {
             </li>
             <li className="headerLi">
               {' '}
-              <Link key="songs" href={`/categories/songs`}>
+              <Link key="songs" href={`/categories/cancons`}>
                 Cançons
               </Link>
             </li>

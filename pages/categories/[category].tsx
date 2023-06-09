@@ -1,54 +1,78 @@
 import React from 'react';
+import Head from 'next/head';
 import Header from '../../components/Header';
+import Banner from '../../components/Banner';
 import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
 import { Post, Category } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ParsedUrlQuery } from 'querystring';
 
 interface Props {
-  post: Post;
+  posts: Post[];
+  category: string;
 }
 
-const Post: React.FC<Props> = ({ post }: Props) => {
+interface Params extends ParsedUrlQuery {
+  category: string;
+}
+
+const Post: React.FC<Props> = ({ posts, category }: Props) => {
   return (
     <div>
-      <Header />
-      <Image
-        className="w-full h-96 object-cover"
-        src={urlFor(post.mainImage).url()!}
-        alt={post.title}
-        width={580}
-        height={550}
-      />
-      <div className="max-w-3x1 mx-auto">
-        <article className="w-full mx-auto p-5 bg-secondaryColor/10">
-          <h1 className="font-titleFont font-medium text-[32px] text-primary border-b-[1px] border-b-cyan-800 mt-10 mb-3">
-            {post.title}
-          </h1>
-          <h2 className="font-bodyFont  text-[18px] text-gray-500 mb-2">
-            {post.description}
-          </h2>
-          <div className="flex items-center gap-2">
-            <Image
-              className="rounded-full w-12 h-12 object-cover bg-red-400"
-              src={urlFor(post.author.image).url()}
-              alt={post.author.name}
-              width={30}
-              height={30}
-            />
-            <p className="font-bodyFont text-base">
-              Publicat per{' '}
-              <span className="font-bold text-secondaryColor">
-                {post.author.name}
-              </span>{' '}
-              - Published at {new Date(post.publishedAt).toLocaleDateString()}
-            </p>
-          </div>
-          <div className="mt-10"></div>
-        </article>
-      </div>
-      <Footer />
+      <Head>
+        <title>Musicanna</title>
+        <link rel="icon" href="/smallLogo.ico" />
+      </Head>
+
+      <main className="font-bodyFont">
+        {/* ============ Header Start here ============ */}
+        <Header />
+        {/* ============ Header End here ============== */}
+        {/* ============ Post Part Start here ========= */}
+        <h1 className="font-titleFont font-medium text-[32px] text-primary mt-10 mb-3 text-center">
+          {category.toUpperCase()}
+        </h1>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 py-6">
+          {posts.map((post) => (
+            <Link key={post._id} href={`/post/${post.slug.current}`}>
+              <div className="border-[1px] border-secondaryColor border-opacity-40 h-[450px] group">
+                <div className="h-3/5 w-full overflow-hidden">
+                  <Image
+                    width={380}
+                    height={350}
+                    src={urlFor(post.mainImage)?.url()!}
+                    alt={post.title}
+                    className="w-full h-full object-cover brightness-75 group-hover:brightness-100 duration-300 group-hover:scale-110"
+                  />
+                </div>
+                <div className="h-2/5 w-fullflex flex-col justify-center">
+                  <div className="flex justify-between items-center px-4 py-1 border-b-[1px] border-b-gray-500">
+                    <p>{post.title}</p>
+                    <Image
+                      className="w-12 h-12 rounded-full object-cover"
+                      src={urlFor(post.author?.image)?.url()!}
+                      alt="authorImg"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+                  <p className="py-2 px-4 text-base">
+                    {post.description.substring(0, 60)}... by -
+                    <span className="font-semibold">{post.author?.name}</span>
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        {/* ============ Post Part End here =========== */}
+        {/* ============ Footer Start here============= */}
+        <Footer />
+        {/* ============ Footer End here ============== */}
+      </main>
     </div>
   );
 };
@@ -67,22 +91,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
       category: category.title.toLowerCase().replace(/ /g, ''),
     },
   }));
-  console.log(
-    'miPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAP',
-    paths
-  );
   return {
     paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  console.log(
-    'miPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAPmiPADRETIENEUNAP',
-    params
-  );
-  const query = `*[_type == "post" && slug.current == $slug][0]{
+export const getStaticProps: GetStaticProps<Props, Params> = async (
+  context
+) => {
+  const { category } = context.params!;
+  const query = `*[_type == "post" && $category in categories[]->title]{
         _id,
         publishedAt,
         title,
@@ -95,20 +114,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         slug,
         body
     }`;
-
-  const post: Post = await sanityClient.fetch(query, {
-    slug: params?.slug,
+  const posts = await sanityClient.fetch(query, {
+    category,
   });
-
-  if (!post) {
-    return {
-      notFound: true,
-    };
-  }
   return {
     props: {
-      post,
+      posts,
+      category,
     },
-    revalidate: 60,
   };
 };
