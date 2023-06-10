@@ -25,7 +25,11 @@ const Header = () => {
 
             <li className="headerLi">Contes</li>
             <li className="headerLi">Comptacontes</li>
-            <li className="headerLi">Contacte</li>
+            <li className="headerLi">
+              <Link key="songs" href={`/contact`}>
+                Contacte
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="flex items-center gap-8 text-lg">

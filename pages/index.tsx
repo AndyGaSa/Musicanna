@@ -9,7 +9,7 @@ import { sanityClient, urlFor } from '../sanity';
 import { Post } from '../typings';
 import Link from 'next/link';
 
-interface ServiceError{
+interface ServiceError {
   statusCode: number;
   message: string;
 }
@@ -36,7 +36,7 @@ export default function Home({ posts }: Props) {
         <div className="max-w-7xl mx-auto h-60 relative">
           <BannerBottom />
         </div>
-        {/* ============ Banner-Bottom End here ======= */}-
+        {/* ============ Banner-Bottom End here ======= */}
         {/* ============ Post Part Start here ========= */}
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 py-6">
           {posts.map((post) => (
@@ -80,7 +80,7 @@ export default function Home({ posts }: Props) {
   );
 }
 
-export const getServerSideProps = async () :Promise<{props:Props}> => {
+export const getServerSideProps = async (): Promise<{ props: Props }> => {
   const query = `*[_type == "post"]{
     _id,
     title,
@@ -104,9 +104,9 @@ export const getServerSideProps = async () :Promise<{props:Props}> => {
       props: {
         posts: [],
         error: {
-          statusCode:401,
-          message:error.message,
-        }
+          statusCode: 401,
+          message: error.message,
+        },
       },
     };
   }

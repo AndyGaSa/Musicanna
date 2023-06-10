@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import Header from '../../components/Header';
-import Banner from '../../components/Banner';
 import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
 import { Post, Category } from '../../typings';
@@ -19,7 +18,7 @@ interface Params extends ParsedUrlQuery {
   category: string;
 }
 
-const Post: React.FC<Props> = ({ posts, category }: Props) => {
+const Categories: React.FC<Props> = ({ posts, category }: Props) => {
   return (
     <div>
       <Head>
@@ -77,7 +76,7 @@ const Post: React.FC<Props> = ({ posts, category }: Props) => {
   );
 };
 
-export default Post;
+export default Categories;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const query = `*[_type == "category"]{
