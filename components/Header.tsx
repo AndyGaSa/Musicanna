@@ -23,8 +23,16 @@ const Header = () => {
               </Link>
             </li>
 
-            <li className="headerLi">Contes</li>
-            <li className="headerLi">Comptacontes</li>
+            <li className="headerLi">
+              <Link key="songs" href={`/categories/contes verticals`}>
+                Contes Verticals
+              </Link>
+            </li>
+            <li className="headerLi">
+              <Link key="songs" href={`/categories/comptacontes`}>
+                Comptacontes
+              </Link>
+            </li>
             <li className="headerLi">
               <Link key="songs" href={`/contact`}>
                 Contacte
