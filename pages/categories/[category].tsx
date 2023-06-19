@@ -155,11 +155,12 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
           slug,
           body
       },
-    'categoryDescription':*[_type == "category" && title == $category ]{
+    'categoryDescription':*[_type == "category" && title == $category  && language == $language]{
     description}
   }`;
   const { posts, categoryDescription } = await sanityClient.fetch(query, {
     category,
+    language: 'cat',
   });
 
   return {
