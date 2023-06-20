@@ -93,7 +93,7 @@ const Post: React.FC<Props> = ({ post }: Props) => {
 
 export default Post;
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const query = `*[_type == "post"]{
         _id,
         slug{
@@ -101,11 +101,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
         }
     }`;
   const posts: Post[] = await sanityClient.fetch(query);
-  const paths = posts.map((post: Post) => ({
-    params: {
-      slug: post.slug.current,
-    },
-  }));
+
+  const paths = posts
+    .map((post: Post) =>
+      locales!.map((locale) => ({
+        params: { slug: post.slug.current },
+        locale,
+      }))
+    )
+    .flat();
   return {
     paths,
     fallback: false,

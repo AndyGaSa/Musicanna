@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ParsedUrlQuery } from 'querystring';
 import PortableText from 'react-portable-text';
+import { useRouter } from 'next/router';
 
 interface Props {
   posts: Post[];
@@ -25,6 +26,7 @@ const Categories: React.FC<Props> = ({
   categoryTitle,
   categoryDescription,
 }: Props) => {
+  //const router = useRouter();
   return (
     <div>
       <Head>
@@ -119,18 +121,21 @@ const Categories: React.FC<Props> = ({
 
 export default Categories;
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const query = `*[_type == "category"]{
     _id,
       title
   }`;
   const categories: Category[] = await sanityClient.fetch(query);
 
-  const paths = categories.map((category: Category) => ({
-    params: {
-      category: category.title.toLowerCase(),
-    },
-  }));
+  const paths = categories
+    .map((category: Category) =>
+      locales!.map((locale) => ({
+        params: { category: category.title.toLowerCase() },
+        locale,
+      }))
+    )
+    .flat();
   return {
     paths,
     fallback: false,
@@ -142,7 +147,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 ) => {
   const { category } = context.params!;
   const query = `{
-    'posts':*[_type == "post" && $category in categories[]->title]{
+    'posts':*[_type == "post"  && language == $language && $category in categories[]->title]{
           _id,
           publishedAt,
           title,
@@ -156,17 +161,16 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
           body
       },
     'categoryDescription':*[_type == "category" && title == $category  && language == $language]{
-    description}
+    description, subtitle}
   }`;
   const { posts, categoryDescription } = await sanityClient.fetch(query, {
     category,
-    language: 'cat',
+    language: 'en',
   });
-
   return {
     props: {
       posts,
-      categoryTitle: category,
+      categoryTitle: categoryDescription[0].subtitle,
       categoryDescription: categoryDescription[0].description,
     },
   };

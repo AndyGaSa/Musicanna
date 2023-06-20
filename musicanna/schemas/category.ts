@@ -11,6 +11,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
@@ -22,4 +27,14 @@ export default defineType({
       hidden: true,
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      language: 'language',
+    },
+    prepare(selection) {
+      const {language} = selection
+      return {...selection, subtitle: language}
+    },
+  },
 })

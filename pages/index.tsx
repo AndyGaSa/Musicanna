@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { sanityClient, urlFor } from '../sanity';
 import { Post } from '../typings';
 import Link from 'next/link';
+import { GetServerSideProps } from 'next/types';
 
 interface ServiceError {
   statusCode: number;
@@ -80,8 +81,10 @@ export default function Home({ posts }: Props) {
   );
 }
 
-export const getServerSideProps = async (): Promise<{ props: Props }> => {
-  const query = `*[_type == "post"]{
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
+  const query = `*[_type == "post"  && language == $language] {
     _id,
     title,
     author -> {
@@ -93,7 +96,7 @@ export const getServerSideProps = async (): Promise<{ props: Props }> => {
       slug
   }`;
   try {
-    const posts = await sanityClient.fetch(query);
+    const posts = await sanityClient.fetch(query, { language: context.locale });
     return {
       props: {
         posts,
