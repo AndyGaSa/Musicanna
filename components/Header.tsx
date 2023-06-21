@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 const Header = () => {
   const router = useRouter();
+const { pathname, asPath } = router
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -37,12 +38,11 @@ const Header = () => {
             <li>
               <Link href="/contact">Contacte</Link>
             </li>
-
             <select
               className="selectpicker"
               id="language-selector"
               onChange={(event) => {
-                router.push('/', '/', {
+                router.push({ pathname }, asPath, {
                   locale: event.target.value.toLowerCase(),
                 });
               }}
@@ -81,14 +81,19 @@ const Header = () => {
             <li>
               <Link href="/contact">Contacte</Link>
             </li>
-            <li
-              className="cursor-pointer"
-              onClick={() => {
-                router.push('/', '/', { locale: 'es' });
+            <select
+              className="selectpicker"
+              id="language-selector"
+              onChange={(event) => {
+                router.push({ pathname }, asPath, {
+                  locale: event.target.value.toLowerCase(),
+                });
               }}
             >
-              ES
-            </li>
+              <option className="cursor-pointer">ES</option>
+              <option className="cursor-pointer">CAT</option>
+              <option className="cursor-pointer">EN</option>
+            </select>
           </ul>
         </div>
       )}

@@ -165,7 +165,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   }`;
   const { posts, categoryDescription } = await sanityClient.fetch(query, {
     category,
-    language: 'en',
+    language: context.locale,
   });
   return {
     props: {
