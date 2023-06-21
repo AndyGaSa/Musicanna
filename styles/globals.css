@@ -8,6 +8,13 @@
   }
 }
 
+.language-selector,
+.cursor-pointer {
+  -webkit-appearance: none;
+  background-color: inherit;
+  box-shadow: none !important;
+}
+
 .cloud-content {
   width: 100%;
   bottom: 0;

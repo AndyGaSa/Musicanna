@@ -3,10 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logoDark from '../public/images/logoDark.png';
 import { useRouter } from 'next/router';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Header = () => {
   const router = useRouter();
-const { pathname, asPath } = router
+  const { pathname, asPath } = router;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -22,7 +23,7 @@ const { pathname, asPath } = router
           </div>
         </Link>
         <div className="hidden md:flex flex-1 justify-center">
-          <ul className="flex space-x-14 text-lg font-semibold">
+          <ul className="flex space-x-14 text-lg font-semibold items-center">
             <li>
               <Link href="/">Inici</Link>
             </li>
@@ -39,7 +40,7 @@ const { pathname, asPath } = router
               <Link href="/contact">Contacte</Link>
             </li>
             <select
-              className="selectpicker"
+              className="language-selector"
               id="language-selector"
               onChange={(event) => {
                 router.push({ pathname }, asPath, {
@@ -59,13 +60,13 @@ const { pathname, asPath } = router
             onClick={toggleMenu}
             aria-label="Toggle Menu"
           >
-            {isMenuOpen ? 'Close' : 'Open'}
+            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
       </div>
       {isMenuOpen && (
         <div className="max-w-7xl mx-auto px-4 pb-8 text-white bg-black bg-opacity-50 md:hidden">
-          <ul className="space-y-4 text-lg font-semibold">
+          <ul className="pt-8 space-y-6 text-xl font-semibold">
             <li>
               <Link href="/">Inici</Link>
             </li>
@@ -82,7 +83,7 @@ const { pathname, asPath } = router
               <Link href="/contact">Contacte</Link>
             </li>
             <select
-              className="selectpicker"
+              className="language-selector"
               id="language-selector"
               onChange={(event) => {
                 router.push({ pathname }, asPath, {
