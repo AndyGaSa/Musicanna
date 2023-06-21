@@ -37,14 +37,20 @@ const Header = () => {
             <li>
               <Link href="/contact">Contacte</Link>
             </li>
-            <li
-              className="cursor-pointer"
-              onClick={() => {
-                router.push('/', '/', { locale: 'es' });
+
+            <select
+              className="selectpicker"
+              id="language-selector"
+              onChange={(event) => {
+                router.push('/', '/', {
+                  locale: event.target.value.toLowerCase(),
+                });
               }}
             >
-              ES
-            </li>
+              <option className="cursor-pointer">ES</option>
+              <option className="cursor-pointer">CAT</option>
+              <option className="cursor-pointer">EN</option>
+            </select>
           </ul>
         </div>
         <div className="md:hidden">
