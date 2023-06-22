@@ -19,7 +19,8 @@ const Header = () => {
   };
 
   const changeLanguage = (value: any) => {
-    console.log('🚀 ~ file: Header.tsx:20 ~ changeLanguage ~ value:', value);
+    setdropdownOpen(!dropdownOpen);
+    toggleMenu();
     router.push({ pathname }, asPath, {
       locale: value,
     });
@@ -173,7 +174,9 @@ const Header = () => {
               >
                 <div
                   className="flex hover:cursor-pointer"
-                  onClick={() => changeLanguage('cat')}
+                  onClick={() => {
+                    changeLanguage('cat');
+                  }}
                 >
                   <Image
                     priority
@@ -188,7 +191,9 @@ const Header = () => {
                 </div>
                 <div
                   className="flex hover:cursor-pointer"
-                  onClick={() => changeLanguage('es')}
+                  onClick={() => {
+                    changeLanguage('es');
+                  }}
                 >
                   <Image
                     priority
@@ -203,7 +208,9 @@ const Header = () => {
                 </div>
                 <div
                   className="flex hover:cursor-pointer"
-                  onClick={() => changeLanguage('en')}
+                  onClick={() => {
+                    changeLanguage('en');
+                  }}
                 >
                   <Image
                     priority
