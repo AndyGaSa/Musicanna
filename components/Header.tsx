@@ -4,15 +4,30 @@ import Link from 'next/link';
 import logoDark from '../public/images/logoDark.png';
 import { useRouter } from 'next/router';
 import { FiMenu, FiX } from 'react-icons/fi';
-import cataloniaSvg from '../public/catalonia.svg';
-import spainSvg from '../public/spain.svg';
-import engSvg from '../public/eng.svg';
+import catSvg from '../public/cat.svg';
+import esSvg from '/public/es.svg';
+import enSvg from '/public/en.svg';
 
 const Header = () => {
   const router = useRouter();
+  console.log('router.locale', router.locale);
   const { pathname, asPath } = router;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
+
+  const selectFlagImage = (value: any) => {
+    if (value === 'es') {
+      return esSvg;
+    } else if (value === 'en') {
+      return enSvg;
+    } else {
+      return catSvg;
+    }
+  };
+
+  const [currentLocaleSvg, setLocaleSvg] = useState(
+    selectFlagImage(router.locale)
+  );
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,6 +36,7 @@ const Header = () => {
   const changeLanguage = (value: any) => {
     setdropdownOpen(!dropdownOpen);
     toggleMenu();
+    setLocaleSvg(selectFlagImage(value));
     router.push({ pathname }, asPath, {
       locale: value,
     });
@@ -59,8 +75,8 @@ const Header = () => {
             >
               <Image
                 priority
-                src={cataloniaSvg}
-                alt={'df'}
+                src={currentLocaleSvg}
+                alt={'currentFlag'}
                 height={18}
                 width={18}
               />
@@ -79,8 +95,8 @@ const Header = () => {
               >
                 <Image
                   priority
-                  src={cataloniaSvg}
-                  alt={'cat flag'}
+                  src={catSvg}
+                  alt={'catFlag'}
                   height={18}
                   width={18}
                 />
@@ -94,7 +110,7 @@ const Header = () => {
               >
                 <Image
                   priority
-                  src={spainSvg}
+                  src={esSvg}
                   alt={'es flag'}
                   height={18}
                   width={18}
@@ -109,7 +125,7 @@ const Header = () => {
               >
                 <Image
                   priority
-                  src={engSvg}
+                  src={enSvg}
                   alt={'eng flag'}
                   height={18}
                   width={18}
@@ -149,26 +165,25 @@ const Header = () => {
             <li>
               <Link href="/contact">Contacte</Link>
             </li>
-            <li className="flex">
+            <li className="flex space-x-6">
               <div
                 onClick={() => setdropdownOpen(!dropdownOpen)}
                 className="overflow-hidden rounded-full w-8 h-8 flex justify-center items-center
-                            hover:cursor-pointer
-                            "
+                            hover:cursor-pointer"
               >
                 <Image
                   priority
-                  src={cataloniaSvg}
-                  alt={'df'}
-                  height={30}
-                  width={30}
+                  src={currentLocaleSvg}
+                  alt={'currentFlag'}
+                  height={58}
+                  width={58}
                 />
               </div>
               <div
                 className={`${
                   dropdownOpen
                     ? `top-[91%] right-[10%] opacity-100 visible`
-                    : 'top-[110%] right-[12%] invisible opacity-0'
+                    : 'top-[110%] right-[10%] invisible opacity-0'
                 } 
               px-4 z-40 w-46 rounded border-[.5px] border-dark bg-white py-5 shadow-card transition-all flex `}
               >
@@ -180,7 +195,7 @@ const Header = () => {
                 >
                   <Image
                     priority
-                    src={cataloniaSvg}
+                    src={catSvg}
                     alt={'cat flag'}
                     height={18}
                     width={18}
@@ -197,7 +212,7 @@ const Header = () => {
                 >
                   <Image
                     priority
-                    src={spainSvg}
+                    src={esSvg}
                     alt={'es flag'}
                     height={18}
                     width={18}
@@ -214,7 +229,7 @@ const Header = () => {
                 >
                   <Image
                     priority
-                    src={engSvg}
+                    src={enSvg}
                     alt={'eng flag'}
                     height={18}
                     width={18}
