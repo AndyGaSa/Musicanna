@@ -1,6 +1,6 @@
 import {defineConfig} from 'sanity/lib/exports'
 import {deskTool} from 'sanity/desk'
-import {visionTool} from '../musicanna/node_modules/@sanity/vision/lib/dts/src/index'
+import {visionTool} from '@sanity/vision/'
 import {schemaTypes} from './schemas'
 import {documentInternationalization} from '@sanity/document-internationalization'
 
