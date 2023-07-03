@@ -45,12 +45,12 @@ const Header = () => {
   return (
     <div className="w-full border-b-[1px] border-b-black font-titleFont sticky top-0 bg-white z-50">
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-        <Link href="/">
+        <Link href="/" className="flex-none">
           <div>
             <Image width={80} height={80} src={logoDark} alt="logoDark" />
           </div>
         </Link>
-        <div className="hidden md:flex  justify-center">
+        <div className="hidden md:flex  justify-between overflow-x-clip">
           <ul className="flex space-x-14 text-lg font-semibold items-center">
             <li>
               <Link href="/">Inici</Link>
@@ -69,9 +69,7 @@ const Header = () => {
             </li>
             <div
               onClick={() => setdropdownOpen(!dropdownOpen)}
-              className="overflow-hidden rounded-full w-8 h-8 flex justify-center items-center
-                            hover:cursor-pointer
-                            "
+              className="rounded-full w-8 h-8 flex justify-center items-center hover:cursor-pointer"
             >
               <Image
                 priority
