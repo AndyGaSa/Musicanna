@@ -5,7 +5,7 @@ import BannerBottom from '../components/BannerBottom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
-import { sanityClient, urlFor } from '../sanity';
+import { sanityClient, urlFor } from '../lib/sanity';
 import { Post } from '../typings';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
