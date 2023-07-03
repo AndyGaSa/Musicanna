@@ -7,6 +7,9 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import catSvg from '../public/cat.svg';
 import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import { motion } from 'framer-motion';
+import { Locale } from '../typings';
 
 const Header = () => {
   const router = useRouter();
@@ -15,10 +18,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
 
-  const selectFlagImage = (value: any) => {
-    if (value === 'es') {
+  const selectFlagImage = (lang: Locale) => {
+    if (lang === Locale.es) {
       return esSvg;
-    } else if (value === 'en') {
+    } else if (lang === Locale.eng) {
       return enSvg;
     } else {
       return catSvg;
@@ -26,14 +29,14 @@ const Header = () => {
   };
 
   const [currentLocaleSvg, setLocaleSvg] = useState(
-    selectFlagImage(router.locale)
+    selectFlagImage(router.locale as Locale)
   );
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const changeLanguage = (value: any) => {
+  const changeLanguage = (value: Locale) => {
     setdropdownOpen(!dropdownOpen);
     toggleMenu();
     setLocaleSvg(selectFlagImage(value));
@@ -69,7 +72,7 @@ const Header = () => {
             </li>
             <div
               onClick={() => setdropdownOpen(!dropdownOpen)}
-              className="rounded-full w-8 h-8 flex justify-center items-center hover:cursor-pointer"
+              className="w-16 h-16 flex items-center hover:cursor-pointer"
             >
               <Image
                 priority
@@ -78,18 +81,24 @@ const Header = () => {
                 height={18}
                 width={18}
               />
+              <motion.div
+                initial={{ rotate: 0 }} // initial rotation angle
+                animate={dropdownOpen ? { rotate: 180 } : { rotate: 0 }} // rotate to 180 degrees when the dropdown is open, otherwise rotate to 0 degrees
+                transition={{ duration: 0.2 }} // transition duration
+              >
+                <RiArrowDropDownLine size={18} />
+              </motion.div>
             </div>
             <div
               className={`${
                 dropdownOpen
                   ? `top-[90%] right-[12%] opacity-100 visible`
                   : 'top-[110%] right-[12%] invisible opacity-0'
-              } relative
-              px-4 z-40 w-46 rounded border-[.5px] border-dark bg-white py-5 shadow-card transition-all flex flex-col`}
+              } relative px-4 z-40 w-46 rounded border-[.5px] border-dark bg-white py-5 shadow-card transition-all flex flex-col`}
             >
               <div
                 className="flex hover:cursor-pointer"
-                onClick={() => changeLanguage('cat')}
+                onClick={() => changeLanguage(Locale.cat)}
               >
                 <Image
                   priority
@@ -104,7 +113,7 @@ const Header = () => {
               </div>
               <div
                 className="flex hover:cursor-pointer"
-                onClick={() => changeLanguage('es')}
+                onClick={() => changeLanguage(Locale.es)}
               >
                 <Image
                   priority
@@ -119,7 +128,7 @@ const Header = () => {
               </div>
               <div
                 className="flex hover:cursor-pointer"
-                onClick={() => changeLanguage('en')}
+                onClick={() => changeLanguage(Locale.eng)}
               >
                 <Image
                   priority
@@ -188,7 +197,7 @@ const Header = () => {
                 <div
                   className="flex hover:cursor-pointer"
                   onClick={() => {
-                    changeLanguage('cat');
+                    changeLanguage(Locale.cat);
                   }}
                 >
                   <Image
@@ -205,7 +214,7 @@ const Header = () => {
                 <div
                   className="flex hover:cursor-pointer"
                   onClick={() => {
-                    changeLanguage('es');
+                    changeLanguage(Locale.es);
                   }}
                 >
                   <Image
@@ -222,7 +231,7 @@ const Header = () => {
                 <div
                   className="flex hover:cursor-pointer"
                   onClick={() => {
-                    changeLanguage('en');
+                    changeLanguage(Locale.eng);
                   }}
                 >
                   <Image

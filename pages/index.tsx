@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { sanityClient, urlFor } from '../sanity';
 import { Post } from '../typings';
 import Link from 'next/link';
-import { GetServerSideProps } from 'next/types';
+import { GetServerSideProps } from 'next';
 
 interface ServiceError {
   statusCode: number;
@@ -19,7 +19,8 @@ interface Props {
   posts: Post[];
   error?: ServiceError;
 }
-export default function Home({ posts }: Props) {
+
+const Home: React.FC<Props> = ({ posts }) => {
   return (
     <div>
       <Head>
@@ -52,7 +53,7 @@ export default function Home({ posts }: Props) {
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-100 duration-300 group-hover:scale-110"
                   />
                 </div>
-                <div className="h-2/5 w-fullflex flex-col justify-center">
+                <div className="h-2/5 w-full flex flex-col justify-center">
                   <div className="flex justify-between items-center px-4 py-1 border-b-[1px] border-b-gray-500">
                     <p>{post.title}</p>
                     <Image
@@ -64,7 +65,7 @@ export default function Home({ posts }: Props) {
                     />
                   </div>
                   <p className="py-2 px-4 text-base">
-                    {post.description.substring(0, 60)}... by -
+                    {post.description.substring(0, 60)}... by -{' '}
                     <span className="font-semibold">{post.author?.name}</span>
                   </p>
                 </div>
@@ -79,7 +80,7 @@ export default function Home({ posts }: Props) {
       </main>
     </div>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context
@@ -91,15 +92,16 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       name,
       image
     },
-      description,
-      mainImage,
-      slug
+    description,
+    mainImage,
+    slug
   }`;
   try {
     const posts = await sanityClient.fetch(query, { language: context.locale });
     return {
       props: {
         posts,
+        error: undefined,
       },
     };
   } catch (error) {
@@ -108,9 +110,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
         posts: [],
         error: {
           statusCode: 401,
-          message: error.message,
+          message: (error as Error).message,
         },
       },
     };
   }
 };
+
+export default Home;
