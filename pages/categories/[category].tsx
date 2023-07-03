@@ -26,7 +26,34 @@ const Categories: React.FC<Props> = ({
   categoryTitle,
   categoryDescription,
 }: Props) => {
-  //const router = useRouter();
+  const router = useRouter();
+
+  // Check if posts array is empty
+  if (posts.length === 0) {
+    return (
+      <div>
+        <Head>
+          <title>Musicanna</title>
+          <link rel="icon" href="/smallLogo.ico" />
+        </Head>
+        <main className="font-bodyFont">
+          {/* ============ Header Start here ============ */}
+          <Header />
+          {/* ============ Header End here ============== */}
+          <div className="text-center mt-10">
+            <h1 className="font-titleFont font-medium text-[32px] text-primary mb-3">
+              {categoryTitle.toUpperCase()}
+            </h1>
+            <p>No posts available for this language currently.</p>
+          </div>
+          {/* ============ Footer Start here============= */}
+          <Footer />
+          {/* ============ Footer End here ============== */}
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Head>
@@ -124,7 +151,7 @@ export default Categories;
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const query = `*[_type == "category"]{
     _id,
-      title
+    title
   }`;
   const categories: Category[] = await sanityClient.fetch(query);
 
@@ -148,25 +175,38 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const { category } = context.params!;
   const query = `{
     'posts':*[_type == "post"  && language == $language && $category in categories[]->title]{
-          _id,
-          publishedAt,
-          title,
-          author ->{
-              name,
-              image,
-          },
-          description,
-          mainImage,
-          slug,
-          body
+      _id,
+      publishedAt,
+      title,
+      author ->{
+        name,
+        image,
       },
+      description,
+      mainImage,
+      slug,
+      body
+    },
     'categoryDescription':*[_type == "category" && title == $category  && language == $language]{
-    description, subtitle}
+      description, subtitle
+    }
   }`;
+
   const { posts, categoryDescription } = await sanityClient.fetch(query, {
     category,
     language: context.locale,
   });
+
+  if (posts.length === 0) {
+    return {
+      props: {
+        posts: [],
+        categoryTitle: '', // Add the category title or other required data here
+        categoryDescription: [], // Add the category description or other required data here
+      },
+    };
+  }
+
   return {
     props: {
       posts,

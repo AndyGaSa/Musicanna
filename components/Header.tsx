@@ -18,7 +18,6 @@ const enum LocaleValues {
 
 const Header = () => {
   const router = useRouter();
-  console.log('router.locale', router.locale);
   const { pathname, asPath } = router;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
