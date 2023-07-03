@@ -50,8 +50,8 @@ const Header = () => {
             <Image width={80} height={80} src={logoDark} alt="logoDark" />
           </div>
         </Link>
-        <div className="hidden md:flex  justify-between overflow-x-clip">
-          <ul className="flex space-x-14 text-lg font-semibold items-center">
+        <div className="hidden md:flex md:pl-4 lg:pl-8 justify-between overflow-x-clip">
+          <ul className="flex md:space-x-8 lg:space-x-18  text-lg font-semibold items-center">
             <li>
               <Link href="/">Inici</Link>
             </li>
