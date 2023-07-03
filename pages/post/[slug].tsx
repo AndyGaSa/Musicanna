@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { sanityClient, urlFor } from '../../lib/sanity';
+import { sanityClient, urlFor } from '../../sanity';
 import { Post } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
