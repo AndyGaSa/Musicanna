@@ -20,6 +20,7 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@sanity/vision": "^3.14.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/aria-query": "^5.0.1",
