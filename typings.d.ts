@@ -23,9 +23,3 @@ export interface Category {
   _id: string;
   title: string;
 }
-
-export enum Locale {
-  es = 'es',
-  cat = 'cat',
-  eng = 'en',
-}

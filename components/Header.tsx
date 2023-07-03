@@ -9,7 +9,12 @@ import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { motion } from 'framer-motion';
-import { Locale } from '../typings';
+
+const enum LocaleValues {
+  es = 'es',
+  cat = 'cat',
+  eng = 'en',
+}
 
 const Header = () => {
   const router = useRouter();
@@ -18,10 +23,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
 
-  const selectFlagImage = (lang: Locale) => {
-    if (lang === Locale.es) {
+  const selectFlagImage = (lang: LocaleValues) => {
+    if (lang === LocaleValues.es) {
       return esSvg;
-    } else if (lang === Locale.eng) {
+    } else if (lang === LocaleValues.eng) {
       return enSvg;
     } else {
       return catSvg;
@@ -29,14 +34,14 @@ const Header = () => {
   };
 
   const [currentLocaleSvg, setLocaleSvg] = useState(
-    selectFlagImage(router.locale as Locale)
+    selectFlagImage(router.locale as LocaleValues)
   );
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const changeLanguage = (value: Locale) => {
+  const changeLanguage = (value: LocaleValues) => {
     setdropdownOpen(!dropdownOpen);
     toggleMenu();
     setLocaleSvg(selectFlagImage(value));
@@ -98,7 +103,7 @@ const Header = () => {
             >
               <div
                 className="flex hover:cursor-pointer"
-                onClick={() => changeLanguage(Locale.cat)}
+                onClick={() => changeLanguage(LocaleValues.cat)}
               >
                 <Image
                   priority
@@ -113,7 +118,7 @@ const Header = () => {
               </div>
               <div
                 className="flex hover:cursor-pointer"
-                onClick={() => changeLanguage(Locale.es)}
+                onClick={() => changeLanguage(LocaleValues.es)}
               >
                 <Image
                   priority
@@ -128,7 +133,7 @@ const Header = () => {
               </div>
               <div
                 className="flex hover:cursor-pointer"
-                onClick={() => changeLanguage(Locale.eng)}
+                onClick={() => changeLanguage(LocaleValues.eng)}
               >
                 <Image
                   priority
@@ -197,7 +202,7 @@ const Header = () => {
                 <div
                   className="flex hover:cursor-pointer"
                   onClick={() => {
-                    changeLanguage(Locale.cat);
+                    changeLanguage(LocaleValues.cat);
                   }}
                 >
                   <Image
@@ -214,7 +219,7 @@ const Header = () => {
                 <div
                   className="flex hover:cursor-pointer"
                   onClick={() => {
-                    changeLanguage(Locale.es);
+                    changeLanguage(LocaleValues.es);
                   }}
                 >
                   <Image
@@ -231,7 +236,7 @@ const Header = () => {
                 <div
                   className="flex hover:cursor-pointer"
                   onClick={() => {
-                    changeLanguage(Locale.eng);
+                    changeLanguage(LocaleValues.eng);
                   }}
                 >
                   <Image
