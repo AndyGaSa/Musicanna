@@ -27,13 +27,13 @@ const Contact: React.FC = () => {
           <p>
             El formem un equip de dues persones l’Imma i l’Anna. Entre les dues
             realitzem espectacles per escoles, biblioteques, llars d’infants,
-            etc,on acostem els contes i la música d’una manera molt interactiva.
-            Impartim sessions de música en familia, per infants de 0 a 3 anys i
-            llenguatge musical en familia de 4 a 6 anys. La nostra manera
-            d’acostar ala música als infants és a través de les cançons , les
-            audicions acompanyades de suport visual, els instruments que sempre
-            poden tocar, el joc , el moviment i la relaxació. També fem xerrades
-            per mestres i educadores.
+            etc, on acostem els contes i la música d’una manera molt
+            interactiva. Impartim sessions de música en familia, per infants de
+            0 a 3 anys i llenguatge musical en familia de 4 a 6 anys. La nostra
+            manera d’acostar la música als infants és a través de les cançons ,
+            les audicions acompanyades de suport visual, els instruments que
+            sempre poden tocar, el joc , el moviment i la relaxació. També fem
+            xerrades per mestres i educadores.
           </p>
         </div>
         {/* ============ Post Part End here =========== */}

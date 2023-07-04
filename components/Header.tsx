@@ -69,7 +69,7 @@ const Header = () => {
               <Link href="/categories/contes verticals">Contes Verticals</Link>
             </li>
             <li>
-              <Link href="/categories/comptacontes">Comptacontes</Link>
+              <Link href="/categories/comptacontes">Contacontes</Link>
             </li>
             <li>
               <Link href="/contact">Contacte</Link>
@@ -171,7 +171,7 @@ const Header = () => {
               <Link href="/categories/contes verticals">Contes Verticals</Link>
             </li>
             <li>
-              <Link href="/categories/comptacontes">Comptacontes</Link>
+              <Link href="/categories/comptacontes">Contacontes</Link>
             </li>
             <li>
               <Link href="/contact">Contacte</Link>
