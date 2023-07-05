@@ -16,6 +16,7 @@ module.exports = {
         secondaryColor: '#9b59b6',
         bgColor: '#34495e',
         bannerColor: '#fd845a',
+        grey: '#808080',
       },
       boxShadow: {
         btnShadow: '0px 0px 18px 3px rgba(52,73,94,1)',

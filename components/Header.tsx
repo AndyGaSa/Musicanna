@@ -20,6 +20,7 @@ const Header = () => {
   const router = useRouter();
   const { pathname, asPath } = router;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuAnimation, setMenuAnimation] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
 
   const selectFlagImage = (lang: LocaleValues) => {
@@ -38,6 +39,7 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setMenuAnimation(!isMenuOpen);
   };
 
   const changeLanguage = (value: LocaleValues) => {
@@ -47,6 +49,23 @@ const Header = () => {
     router.push({ pathname }, asPath, {
       locale: value,
     });
+  };
+
+  const menuVariants = {
+    open: {
+      opacity: 1,
+      x: 0, // Slide from 0 to full width
+      transition: {
+        duration: 0.5,
+      },
+    },
+    closed: {
+      opacity: 0,
+      x: '-100%', // Slide to the left by full width
+      transition: {
+        duration: 0.5,
+      },
+    },
   };
 
   return (
@@ -151,17 +170,24 @@ const Header = () => {
           </ul>
         </div>
         <div className="md:hidden">
-          <button
+          <motion.button
             className="text-lg"
             onClick={toggleMenu}
             aria-label="Toggle Menu"
+            initial={false}
+            animate={menuAnimation ? 'open' : 'closed'}
           >
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-          </button>
+          </motion.button>
         </div>
       </div>
       {isMenuOpen && (
-        <div className="max-w-7xl mx-auto px-4 pb-8 text-white bg-black bg-opacity-50 md:hidden">
+        <motion.div
+          initial="closed"
+          animate={menuAnimation ? 'open' : 'closed'}
+          variants={menuVariants}
+          className="absolute max-w-7xl mx-auto px-4 pb-8 text-white w-full bg-grey md:hidden"
+        >
           <ul className="pt-8 space-y-6 text-xl font-semibold">
             <li>
               <Link href="/">Inici</Link>
@@ -183,7 +209,7 @@ const Header = () => {
             <li className="flex space-x-6">
               <div
                 onClick={() => setdropdownOpen(!dropdownOpen)}
-                className="w-12 h-4 flex items-center hover:cursor-pointer"
+                className="w-12 h-6 flex items-center hover:cursor-pointer"
               >
                 <p className="pr-2">Idioma</p>
                 <Image
@@ -204,7 +230,7 @@ const Header = () => {
               <div
                 className={`${
                   dropdownOpen
-                    ? `  top-[87%] right-[31%] opacity-100 visible`
+                    ? `  top-[85%] right-[31%] opacity-100 visible`
                     : 'top-[110%] right-[10%] invisible opacity-0'
                 } 
                 absolute px-4 z-40 w-46 rounded border-[.5px] border-dark bg-white py-2 shadow-card transition-all flex flex-col `}
@@ -263,7 +289,7 @@ const Header = () => {
               </div>
             </li>
           </ul>
-        </div>
+        </motion.div>
       )}
     </div>
   );
