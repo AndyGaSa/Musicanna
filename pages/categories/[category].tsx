@@ -65,11 +65,11 @@ const Categories: React.FC<Props> = ({
         {/* ============ Header Start here ============ */}
         <Header />
         {/* ============ Header End here ============== */}
-        {/* ============ Post Part Start here ========= */}
+        {/* ============ Title and Description Start here ========= */}
         <h1 className="font-titleFont font-medium text-[32px] text-primary mt-10 mb-3 text-center">
           {categoryTitle.toUpperCase()}
         </h1>
-        <div className="font-titleFont font-small text-[10px] mb-3 ml-12 mr-12 text-center">
+        <div className="font-titleFont font-small text-[16px] text-center p-6 max-w-7xl mx-auto">
           <PortableText
             dataset={process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}
             projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u8imjmtp'}
@@ -104,6 +104,8 @@ const Categories: React.FC<Props> = ({
             }}
           />
         </div>
+        {/* ============ Title and description end here ========= */}
+        {/* ============ Post Part Start here ========= */}
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 py-6">
           {posts.map((post) => (
             <Link key={post._id} href={`/post/${post.slug.current}`}>
@@ -163,6 +165,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
       }))
     )
     .flat();
+  console.log('hola', paths);
   return {
     paths,
     fallback: false,

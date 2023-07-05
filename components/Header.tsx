@@ -69,10 +69,12 @@ const Header = () => {
               <Link href="/categories/contes verticals">Contes Verticals</Link>
             </li>
             <li>
-              <Link href="/categories/comptacontes">Contacontes</Link>
+              <Link href="/categories/contacontes i tallers">
+                Contacontes i tallers
+              </Link>
             </li>
             <li>
-              <Link href="/contact">Contacte</Link>
+              <Link href="/quiSom">Qui som</Link>
             </li>
             <div
               onClick={() => setdropdownOpen(!dropdownOpen)}
@@ -171,10 +173,12 @@ const Header = () => {
               <Link href="/categories/contes verticals">Contes Verticals</Link>
             </li>
             <li>
-              <Link href="/categories/comptacontes">Contacontes</Link>
+              <Link href="/categories/contacontes i tallers">
+                Contacontes i tallers
+              </Link>
             </li>
             <li>
-              <Link href="/contact">Contacte</Link>
+              <Link href="/quiSom">Qui som</Link>
             </li>
             <li className="flex space-x-6">
               <div

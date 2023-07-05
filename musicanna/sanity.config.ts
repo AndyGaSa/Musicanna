@@ -7,10 +7,8 @@ import {documentInternationalization} from '@sanity/document-internationalizatio
 export default defineConfig({
   name: 'default',
   title: 'Musicanna',
-
   projectId: 'u8imjmtp',
   dataset: 'production',
-
   plugins: [
     deskTool(),
     visionTool(),
@@ -23,7 +21,6 @@ export default defineConfig({
       schemaTypes: ['post', 'category'],
     }),
   ],
-
   schema: {
     types: schemaTypes,
   },
