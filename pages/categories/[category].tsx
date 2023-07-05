@@ -165,7 +165,6 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
       }))
     )
     .flat();
-  console.log('hola', paths);
   return {
     paths,
     fallback: false,
