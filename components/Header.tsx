@@ -183,24 +183,31 @@ const Header = () => {
             <li className="flex space-x-6">
               <div
                 onClick={() => setdropdownOpen(!dropdownOpen)}
-                className="overflow-hidden rounded-full w-8 h-8 flex justify-center items-center
-                            hover:cursor-pointer"
+                className="w-12 h-4 flex items-center hover:cursor-pointer"
               >
+                <p className="pr-2">Idioma</p>
                 <Image
                   priority
                   src={currentLocaleSvg}
                   alt={'currentFlag'}
-                  height={58}
-                  width={58}
+                  height={22}
+                  width={22}
                 />
+                <motion.div
+                  initial={{ rotate: 0 }} // initial rotation angle
+                  animate={dropdownOpen ? { rotate: 180 } : { rotate: 0 }} // rotate to 180 degrees when the dropdown is open, otherwise rotate to 0 degrees
+                  transition={{ duration: 0.2 }} // transition duration
+                >
+                  <RiArrowDropDownLine size={28} />
+                </motion.div>
               </div>
               <div
                 className={`${
                   dropdownOpen
-                    ? `top-[91%] right-[10%] opacity-100 visible`
+                    ? `  top-[87%] right-[31%] opacity-100 visible`
                     : 'top-[110%] right-[10%] invisible opacity-0'
                 } 
-              px-4 z-40 w-46 rounded border-[.5px] border-dark bg-white py-5 shadow-card transition-all flex `}
+                absolute px-4 z-40 w-46 rounded border-[.5px] border-dark bg-white py-2 shadow-card transition-all flex flex-col `}
               >
                 <div
                   className="flex hover:cursor-pointer"
