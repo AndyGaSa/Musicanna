@@ -56,14 +56,14 @@ const Header = () => {
       opacity: 1,
       x: 0, // Slide from 0 to full width
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
     closed: {
       opacity: 0,
       x: '-100%', // Slide to the left by full width
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
   };
