@@ -29,15 +29,24 @@ const Footer = () => {
               className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
             />
           </a>
-          <a href="https://www.instagram.com/contesverticals/" target="_blank">
-            <BsInstagram
-              data-testid="instagram"
-              className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
-            />
-          </a>
           <a href="https://es-es.facebook.com/musicanna.cat/" target="_blank">
             <BsFacebook
               data-testid="facebook"
+              className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
+            />
+          </a>
+          <a
+            href="https://www.youtube.com/@musicannacontesverticals8037"
+            target="_blank"
+          >
+            <BsYoutube
+              data-testid="youtube"
+              className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
+            />
+          </a>
+          <a href="https://www.instagram.com/contesverticals/" target="_blank">
+            <BsInstagram
+              data-testid="instagram"
               className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
             />
           </a>
