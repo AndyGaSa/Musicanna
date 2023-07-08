@@ -15,7 +15,6 @@ const Post: React.FC<Props> = ({ post }: Props) => {
   return (
     <div>
       <Header />
-
       <Image
         className="h-96 w-full object-cover"
         src={urlFor(post.mainImage).url()!}
@@ -31,23 +30,8 @@ const Post: React.FC<Props> = ({ post }: Props) => {
           <h2 className="font-bodyFont  text-[18px] text-gray-500 mb-2">
             {post.description}
           </h2>
-          <div className="flex items-center gap-2">
-            <Image
-              className="rounded-full w-12 h-12 object-cover bg-red-400"
-              src={urlFor(post.author.image).url()}
-              alt={post.author.name}
-              width={30}
-              height={30}
-            />
-            <p className="font-bodyFont text-base">
-              Publicat per{' '}
-              <span className="font-bold text-secondaryColor">
-                {post.author.name}
-              </span>{' '}
-              - Published at {new Date(post.publishedAt).toLocaleDateString()}
-            </p>
-          </div>
-          <div className="mt-10">
+
+          <div className="">
             <PortableText
               dataset={process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}
               projectId={
@@ -73,6 +57,7 @@ const Post: React.FC<Props> = ({ post }: Props) => {
                     {...props}
                   />
                 ),
+                normal: (props: any) => <p className="my-4" {...props} />,
                 li: ({ children }: any) => (
                   <li className="ml-4 list-disc">{children}</li>
                 ),
@@ -81,6 +66,23 @@ const Post: React.FC<Props> = ({ post }: Props) => {
                     {children}
                   </a>
                 ),
+                inlineAudio: (value: any) => {
+                  const ref = value.asset._ref;
+                  const projeccId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+                  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+
+                  const [_file, id, extension] = ref.split('-');
+                  const audioUrl = `https://cdn.sanity.io/files/${projeccId}/${dataset}/${id}.${extension}`;
+
+                  return (
+                    <audio
+                      controls
+                      className="block w-full max-w-md mx-auto mt-10"
+                    >
+                      <source src={audioUrl} type="audio/mpeg" />
+                    </audio>
+                  );
+                },
               }}
             />
           </div>
@@ -128,7 +130,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         description,
         mainImage,
         slug,
-        body
+        body,
     }`;
 
   const post: Post = await sanityClient.fetch(query, {

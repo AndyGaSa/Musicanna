@@ -19,11 +19,11 @@ const BannerBottom = () => {
       </div>
       <div className="w-full lg:w-[60%] flex flex-col gap-3">
         <h3 className="font-bold text-xl md:text-3xl">
-          Cançons, contes verticals i contacontes per a nens i nenes de 0 a 6
-          anys
+          Musicanna és una manera de crear, fer i viure la música i els contes.
         </h3>
         <h4 className="text-xl text-white/80">
-          Un món d&#39;imaginació, creativitat, contes i cançons
+          Cançons, contes verticals i contacontes per a nens i nenes de 0 a 6
+          anys. <br /> Un món d&#39;imaginació, creativitat, contes i cançons
         </h4>
       </div>
     </div>

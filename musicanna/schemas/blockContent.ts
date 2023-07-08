@@ -63,5 +63,13 @@ export default defineType({
       type: 'image',
       options: {hotspot: true},
     }),
+    defineArrayMember({
+      name: 'inlineAudio',
+      title: 'Pujar musica',
+      type: 'file',
+      options: {
+        accept: 'audio/*',
+      },
+    }),
   ],
 })
