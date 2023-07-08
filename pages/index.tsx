@@ -35,7 +35,7 @@ const Home: React.FC<Props> = ({ posts }) => {
         {/* ============ Banner Start here ============ */}
         <Banner />
         {/* ============ Banner End here ============== */}
-        <div className="max-w-7xl mx-auto h-60 relative">
+        <div className="max-w-7xl mx-auto relative">
           <BannerBottom />
         </div>
         {/* ============ Banner-Bottom End here ======= */}
