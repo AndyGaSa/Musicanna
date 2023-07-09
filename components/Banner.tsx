@@ -47,18 +47,17 @@ const Banner = ({ images }: any) => {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-    <div className="w-full h-auto md:h-[650px] relative">
+    <div className="w-full h-auto lg:h-[550px] relative">
       <Slider {...settings}>
         {imagesSorted.map((image: any) => (
-          <div>
+          <div key={image._id}>
             <Image
-              className="w-full h-auto md:h-[650px] object-cover"
+              className="xl:h-[68vh] h-[50vh] w-full object-cover"
               src={urlFor(image.image)?.url()!}
               width={1920}
               height={1080}
               priority
               alt="bannerImg"
-              key={image._id}
               data-testid="bannerImg"
             />
           </div>
