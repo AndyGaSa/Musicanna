@@ -1,10 +1,7 @@
 import Image from 'next/image';
 import Slider from 'react-slick';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import bannerImgOne from '../public/images/bannerImgOne.jpg';
-import bannerImgTwo from '../public/images/bannerImgTwo.jpg';
-import bannerImgThree from '../public/images/bannerImgThree.jpg';
-import bannerImgFour from '../public/images/bannerImgFour.jpg';
+import { urlFor } from '../sanity';
 
 function SampleNextArrow(props: any) {
   const { onClick } = props;
@@ -38,7 +35,8 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const Banner = () => {
+const Banner = ({ images }: any) => {
+  const imagesSorted = images.sort((a: any, b: any) => a.order - b.order);
   const settings = {
     dots: false,
     infinite: true,
@@ -51,42 +49,20 @@ const Banner = () => {
   return (
     <div className="w-full h-auto md:h-[650px] relative">
       <Slider {...settings}>
-        <div>
-          <Image
-            className="w-full h-auto md:h-[650px] object-cover"
-            src={bannerImgOne}
-            loading={'eager'}
-            alt="bannerImgOne"
-            data-testid="bannerImgOne"
-          />
-        </div>
-        <div>
-          <Image
-            className="w-full h-auto md:h-[650px] object-cover"
-            src={bannerImgTwo}
-            loading={'lazy'}
-            alt="bannerImgTwo"
-            data-testid="bannerImgTwo"
-          />
-        </div>
-        <div>
-          <Image
-            className="w-full h-auto md:h-[650px] object-cover"
-            src={bannerImgThree}
-            loading={'lazy'}
-            alt="bannerImgThree"
-            data-testid="bannerImgThree"
-          />
-        </div>
-        <div>
-          <Image
-            className="w-full h-auto md:h-[650px] object-cover"
-            src={bannerImgFour}
-            loading={'lazy'}
-            alt="bannerImgFour"
-            data-testid="bannerImgFour"
-          />
-        </div>
+        {imagesSorted.map((image: any) => (
+          <div>
+            <Image
+              className="w-full h-auto md:h-[650px] object-cover"
+              src={urlFor(image.image)?.url()!}
+              width={1920}
+              height={1080}
+              priority
+              alt="bannerImg"
+              key={image._id}
+              data-testid="bannerImg"
+            />
+          </div>
+        ))}
       </Slider>
     </div>
   );
