@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logoDark from '../public/images/logoDark.png';
@@ -22,6 +22,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
+  const [currentLocaleSvg, setLocaleSvg] = useState(catSvg);
 
   const selectFlagImage = (lang: LocaleValues) => {
     if (lang === LocaleValues.es) {
@@ -33,10 +34,6 @@ const Header = () => {
     }
   };
 
-  const [currentLocaleSvg, setLocaleSvg] = useState(
-    selectFlagImage(router.locale as LocaleValues)
-  );
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     setMenuAnimation(!isMenuOpen);
@@ -45,7 +42,6 @@ const Header = () => {
   const changeLanguage = (value: LocaleValues) => {
     setdropdownOpen(!dropdownOpen);
     toggleMenu();
-    setLocaleSvg(selectFlagImage(value));
     router.push({ pathname }, asPath, {
       locale: value,
     });
@@ -67,6 +63,10 @@ const Header = () => {
       },
     },
   };
+
+  useEffect(() => {
+    setLocaleSvg(selectFlagImage(router.locale as LocaleValues));
+  }, [router.locale]);
 
   return (
     <div className="w-full border-b-[1px] border-b-black font-titleFont sticky top-0 bg-white z-50">
