@@ -1,14 +1,7 @@
 import Image from 'next/image';
 import logoLight from '../public/images/logoLight.png';
-import {
-  BsFacebook,
-  BsTwitter,
-  BsYoutube,
-  BsLinkedin,
-  BsGithub,
-  BsInstagram,
-} from 'react-icons/bs';
-import { AiOutlineCopyrightCircle } from 'react-icons/ai';
+import { BsFacebook, BsWhatsapp, BsYoutube, BsInstagram } from 'react-icons/bs';
+import { AiOutlineCopyrightCircle, AiOutlineMail } from 'react-icons/ai';
 
 const Footer = () => {
   return (
@@ -22,7 +15,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex gap-6 py-8">
           <a href="https://www.instagram.com/musicanna.cat/" target="_blank">
             <BsInstagram
               data-testid="instagram"
@@ -49,6 +42,24 @@ const Footer = () => {
               data-testid="instagram"
               className="w-6 h-6 text-white/50 hover:text-white duration-300 cursor-pointer"
             />
+          </a>
+        </div>
+        <div className="flex py-6 gap-4">
+          <a
+            href="https://wa.me/666767957"
+            target="_blank"
+            className="flex gap-1 xl:gap-3 text-white/50 hover:text-white duration-300 cursor-pointer"
+          >
+            <BsWhatsapp data-testid="whatsapp" className="w-6 h-6" />
+            <span>Whatsapp</span>
+          </a>
+          <a
+            href="mailto: annalucini@musicanna.cat"
+            target="_blank"
+            className="flex gap-1 xl:gap-3 text-white/50 hover:text-white duration-300 cursor-pointer"
+          >
+            <AiOutlineMail data-testid="mail" className="w-6 h-6" />
+            <span>annalucini@musicanna.cat</span>
           </a>
         </div>
       </div>
