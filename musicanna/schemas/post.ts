@@ -9,12 +9,19 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'keep the title short!',
+      description: 'titol del post que es veura!',
+    }),
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      description: 'Idioma del post',
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'string',
+      description: 'descripcio breu del post',
     }),
     defineField({
       name: 'slug',
@@ -24,6 +31,8 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
+      description:
+        'Clicar en el boto "Generate" de la dreta cuan el post es nou, despres deixar-ho com esta',
     }),
     defineField({
       name: 'author',
@@ -38,12 +47,15 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      description: 'Imatge de previsualitzacio del post i capcalera de aquest',
     }),
     defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',
       of: [{type: 'reference', to: {type: 'category'}}],
+      description:
+        'Categoria a la que perteneix el post, VIGILAR que EL IDIOMA sigui el corresponent',
     }),
     defineField({
       name: 'publishedAt',
@@ -54,12 +66,8 @@ export default defineType({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-    }),
-    defineField({
-      name: 'language',
-      type: 'string',
-      readOnly: true,
-      hidden: true,
+      description:
+        'Contingut del post que es mostrara, es poden adjuntar imatges,videos text o cancons. Mirar que el idioma sigui el correcte!',
     }),
   ],
 

@@ -14,6 +14,8 @@ export default defineType({
       name: 'order',
       title: 'Order',
       type: 'number',
+      description:
+        'Posicio de la foto a la pantalla de inici, la numero 1 surt la primera i el numero mes gran el ultim',
     }),
     defineField({
       name: 'image',
