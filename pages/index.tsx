@@ -66,7 +66,7 @@ const Home: React.FC<Props> = ({ posts, bannerImages }) => {
                     />
                   </div>
                   <p className="py-2 px-4 text-base">
-                    {post.description.substring(0, 60)}... by -{' '}
+                    {post.description?.substring(0, 60)}... by -{' '}
                     <span className="font-semibold">{post.author?.name}</span>
                   </p>
                 </div>
