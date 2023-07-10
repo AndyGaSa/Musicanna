@@ -208,10 +208,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     category,
     language: context.locale,
   });
-  console.log(
-    '🚀 ~ file: [category].tsx:204 ~ categoryDescription:',
-    categoryDescription
-  );
   if (posts.length === 0) {
     return {
       props: {
