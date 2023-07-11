@@ -125,13 +125,7 @@ const Header = () => {
                 className="flex hover:cursor-pointer"
                 onClick={() => changeLanguage(LocaleValues.cat)}
               >
-                <Image
-                  priority
-                  src={catSvg}
-                  alt={'catFlag'}
-                  height={18}
-                  width={18}
-                />
+                <Image src={catSvg} alt={'catFlag'} height={18} width={18} />
                 <a className="block py-2 px-5 text-base font-semibold text-body-color hover:bg-primary hover:bg-opacity-5 hover:text-primary">
                   Cat
                 </a>
@@ -140,13 +134,7 @@ const Header = () => {
                 className="flex hover:cursor-pointer"
                 onClick={() => changeLanguage(LocaleValues.es)}
               >
-                <Image
-                  priority
-                  src={esSvg}
-                  alt={'es flag'}
-                  height={18}
-                  width={18}
-                />
+                <Image src={esSvg} alt={'es flag'} height={18} width={18} />
                 <a className="block py-2 px-5 text-base font-semibold text-body-color hover:bg-primary hover:bg-opacity-5 hover:text-primary">
                   Es
                 </a>
@@ -155,13 +143,7 @@ const Header = () => {
                 className="flex hover:cursor-pointer"
                 onClick={() => changeLanguage(LocaleValues.eng)}
               >
-                <Image
-                  priority
-                  src={enSvg}
-                  alt={'eng flag'}
-                  height={18}
-                  width={18}
-                />
+                <Image src={enSvg} alt={'eng flag'} height={18} width={18} />
                 <a className="block py-2 px-5 text-base font-semibold text-body-color hover:bg-primary hover:bg-opacity-5 hover:text-primary">
                   Eng
                 </a>
@@ -213,7 +195,6 @@ const Header = () => {
               >
                 <p className="pr-2">Idioma</p>
                 <Image
-                  priority
                   src={currentLocaleSvg}
                   alt={'currentFlag'}
                   height={22}
@@ -241,13 +222,7 @@ const Header = () => {
                     changeLanguage(LocaleValues.cat);
                   }}
                 >
-                  <Image
-                    priority
-                    src={catSvg}
-                    alt={'cat flag'}
-                    height={18}
-                    width={18}
-                  />
+                  <Image src={catSvg} alt={'cat flag'} height={18} width={18} />
                   <a className="block py-2 px-5 text-base text-xl font-semibold text-black hover:bg-primary hover:bg-opacity-5 hover:text-primary">
                     Cat
                   </a>
@@ -258,13 +233,7 @@ const Header = () => {
                     changeLanguage(LocaleValues.es);
                   }}
                 >
-                  <Image
-                    priority
-                    src={esSvg}
-                    alt={'es flag'}
-                    height={18}
-                    width={18}
-                  />
+                  <Image src={esSvg} alt={'es flag'} height={18} width={18} />
                   <a className="block py-2 px-5 text-base text-xl font-semibold text-black hover:bg-primary hover:bg-opacity-5 hover:text-primary">
                     Es
                   </a>
@@ -275,13 +244,7 @@ const Header = () => {
                     changeLanguage(LocaleValues.eng);
                   }}
                 >
-                  <Image
-                    priority
-                    src={enSvg}
-                    alt={'eng flag'}
-                    height={18}
-                    width={18}
-                  />
+                  <Image src={enSvg} alt={'eng flag'} height={18} width={18} />
                   <a className="block py-2 px-5 text-base text-xl font-semibold text-black hover:bg-primary hover:bg-opacity-5 hover:text-primary">
                     Eng
                   </a>

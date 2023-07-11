@@ -126,6 +126,7 @@ const Categories: React.FC<Props> = ({
                     height={350}
                     src={urlFor(post.mainImage)?.url()!}
                     alt={post.title}
+                    priority
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-100 duration-300 group-hover:scale-110"
                   />
                 </div>
