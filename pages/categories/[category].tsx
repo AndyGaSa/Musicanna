@@ -117,7 +117,7 @@ const Categories: React.FC<Props> = ({
         {/* ============ Title and description end here ========= */}
         {/* ============ Post Part Start here ========= */}
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 py-6">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <Link key={post._id} href={`/post/${post.slug.current}`}>
               <div className="border-[1px] border-secondaryColor border-opacity-40 h-[450px] group">
                 <div className="h-3/5 w-full overflow-hidden">
@@ -126,7 +126,7 @@ const Categories: React.FC<Props> = ({
                     height={350}
                     src={urlFor(post.mainImage)?.url()!}
                     alt={post.title}
-                    priority
+                    priority={index === 0}
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-100 duration-300 group-hover:scale-110"
                   />
                 </div>
