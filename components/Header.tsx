@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import logoDark from '../public/images/logoDark.png';
+import logoDark from '../public/images/LegacyLogo.png';
 import { useRouter } from 'next/router';
 import { FiMenu, FiX } from 'react-icons/fi';
 import catSvg from '../public/cat.svg';
@@ -73,7 +73,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
         <Link href="/" className="flex-none">
           <div>
-            <Image width={80} height={80} src={logoDark} alt="logoDark" />
+            <Image width={110} height={110} src={logoDark} alt="logoDark" />
           </div>
         </Link>
         <div className="hidden md:flex md:pl-4 lg:pl-8 justify-between overflow-x-clip">
