@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logoLight from '../public/images/LegacyLogoMusicannaWhite.svg';
+import logoLight from '../public/images/legacyLogoMusicannaWhite.svg';
 import { BsFacebook, BsWhatsapp, BsYoutube, BsInstagram } from 'react-icons/bs';
 import { AiOutlineCopyrightCircle, AiOutlineMail } from 'react-icons/ai';
 

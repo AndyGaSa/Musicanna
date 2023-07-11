@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import logoDark from '../public/images/LegacyLogo.png';
+import logoDark from '../public/images/legacyLogo.png';
 import { useRouter } from 'next/router';
 import { FiMenu, FiX } from 'react-icons/fi';
 import catSvg from '../public/cat.svg';
