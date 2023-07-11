@@ -5,7 +5,7 @@ module.exports = {
     domains: ['cdn.sanity.io', 'yt3.googleusercontent.com'],
   },
   i18n: {
-    locales: ['cat', 'en', 'es'],
-    defaultLocale: 'cat',
+    locales: ['ca', 'en', 'es'],
+    defaultLocale: 'ca',
   },
 };

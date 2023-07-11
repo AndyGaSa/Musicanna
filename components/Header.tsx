@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 
 const enum LocaleValues {
   es = 'es',
-  cat = 'cat',
+  ca = 'ca',
   eng = 'en',
 }
 
@@ -123,7 +123,7 @@ const Header = () => {
             >
               <div
                 className="flex hover:cursor-pointer"
-                onClick={() => changeLanguage(LocaleValues.cat)}
+                onClick={() => changeLanguage(LocaleValues.ca)}
               >
                 <Image src={catSvg} alt={'catFlag'} height={18} width={18} />
                 <a className="block py-2 px-5 text-base font-semibold text-body-color hover:bg-primary hover:bg-opacity-5 hover:text-primary">
@@ -219,7 +219,7 @@ const Header = () => {
                 <div
                   className="flex hover:cursor-pointer"
                   onClick={() => {
-                    changeLanguage(LocaleValues.cat);
+                    changeLanguage(LocaleValues.ca);
                   }}
                 >
                   <Image src={catSvg} alt={'cat flag'} height={18} width={18} />

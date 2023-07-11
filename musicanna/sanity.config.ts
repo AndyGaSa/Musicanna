@@ -14,7 +14,7 @@ export default defineConfig({
     visionTool(),
     documentInternationalization({
       supportedLanguages: [
-        {id: 'cat', title: 'Catalan'},
+        {id: 'ca', title: 'Catalan'},
         {id: 'es', title: 'Spanish'},
         {id: 'en', title: 'English'},
       ],
