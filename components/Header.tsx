@@ -8,6 +8,7 @@ import catSvg from '../public/cat.svg';
 import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import { headerProps } from '../typings';
 import { motion } from 'framer-motion';
 
 const enum LocaleValues {
@@ -16,9 +17,9 @@ const enum LocaleValues {
   eng = 'en',
 }
 
-const Header = ({ categories, contact }: any) => {
+const Header = ({ categories, contact }: headerProps) => {
   const router = useRouter();
-  const { pathname, asPath } = router;
+  const { asPath } = router;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
@@ -42,7 +43,7 @@ const Header = ({ categories, contact }: any) => {
   const changeLanguage = (value: LocaleValues) => {
     setdropdownOpen(!dropdownOpen);
     toggleMenu();
-    router.push({ pathname }, asPath, {
+    router.push({ pathname: '/' }, asPath, {
       locale: value,
     });
   };

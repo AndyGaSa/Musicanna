@@ -6,28 +6,14 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 import { sanityClient, urlFor } from '../sanity';
-import { Post } from '../typings';
+import { indexProps } from '../typings';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
 
-interface ServiceError {
-  statusCode: number;
-  message: string;
-}
-
-interface Props {
-  posts: Post[];
-  error?: ServiceError;
-  bannerImages: [];
-  categories: [];
-  contact: [];
-}
-
-const Home: React.FC<Props> = ({
+const Home: React.FC<indexProps> = ({
   posts,
   bannerImages,
-  categories,
-  contact,
+  headerProps: { contact, categories },
 }) => {
   return (
     <div>
@@ -90,27 +76,28 @@ const Home: React.FC<Props> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async (
+export const getServerSideProps: GetServerSideProps<indexProps> = async (
   context
 ) => {
   const query = `{'posts':*[_type == "post"  && language == $language] {
-    _id,
-    title,
-    author -> {
-      name,
-      image
+      _id,
+      title,
+      author -> {
+        name,
+        image
+      },
+      description,
+      mainImage,
+      slug
     },
-    description,
-    mainImage,
-    slug
-  },
-  'bannerImages':*[_type == "banner"],
-  'categories':*[_type == "category" && language == $language]{
-    title, subtitle
-  },
-  'contact':*[_type == "contact" && language == $language]{
-    title, subtitle
-  }}`;
+    'bannerImages':*[_type == "banner"],
+    'categories':*[_type == "category" && language == $language]{
+      title, subtitle
+    },
+    'contact':*[_type == "contact" && language == $language]{
+      title, subtitle
+    }
+  }`;
   try {
     const { posts, bannerImages, categories, contact } =
       await sanityClient.fetch(query, {
@@ -120,8 +107,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       props: {
         posts,
         bannerImages,
-        categories,
-        contact,
+        headerProps: {
+          categories,
+          contact,
+        },
       },
     };
   } catch (error) {
@@ -129,8 +118,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       props: {
         posts: [],
         bannerImages: [],
-        categories: [],
-        contact: [],
+        headerProps: {
+          categories: [{ title: '', subtitle: '' }],
+          contact: [{ title: '', subtitle: '' }],
+        },
         error: {
           statusCode: 401,
           message: (error as Error).message,

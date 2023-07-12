@@ -3,28 +3,23 @@ import Head from 'next/head';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
-import { Post, Category } from '../../typings';
+import { Category, categoriesProps } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ParsedUrlQuery } from 'querystring';
 import PortableText from 'react-portable-text';
 
-interface Props {
-  posts: Post[];
-  categoryTitle: string;
-  categoryDescription: [];
-}
-
 interface Params extends ParsedUrlQuery {
   category: string;
 }
 
-const Categories: React.FC<Props> = ({
+const Categories: React.FC<categoriesProps> = ({
   posts,
   categoryTitle,
   categoryDescription,
-}: Props) => {
+  headerProps: { categories, contact },
+}: categoriesProps) => {
   // Check if posts array is empty
   if (posts.length === 0) {
     return (
@@ -36,7 +31,7 @@ const Categories: React.FC<Props> = ({
         <main className="font-bodyFont">
           <div className="flex flex-col min-h-screen">
             {/* ============ Header Start here ============ */}
-            <Header />
+            <Header categories={categories} contact={contact} />
             {/* ============ Header End here ============== */}
 
             <div className="justify-center grow py-10 flex lg:gap-12 gap-6 flex-col text-center xl:text-[25px] lg:text-[18px]">
@@ -73,7 +68,7 @@ const Categories: React.FC<Props> = ({
 
       <main className="font-bodyFont">
         {/* ============ Header Start here ============ */}
-        <Header />
+        <Header categories={categories} contact={contact} />
         {/* ============ Header End here ============== */}
         {/* ============ Title and Description Start here ========= */}
         <h1 className="font-titleFont font-medium text-[32px] text-primary mt-10 mb-3 text-center">
@@ -182,7 +177,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   };
 };
 
-export const getStaticProps: GetStaticProps<Props, Params> = async (
+export const getStaticProps: GetStaticProps<categoriesProps, Params> = async (
   context
 ) => {
   const { category } = context.params!;
@@ -202,19 +197,31 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     },
     'categoryDescription':*[_type == "category" && title == $category  && language == $language]{
       description, subtitle
+    },
+    'categories':*[_type == "category" && language == $language]{
+      title, subtitle
+    },
+    'contact':*[_type == "contact" && language == $language]{
+      title, subtitle
     }
   }`;
 
-  const { posts, categoryDescription } = await sanityClient.fetch(query, {
-    category,
-    language: context.locale,
-  });
+  const { posts, categoryDescription, categories, contact } =
+    await sanityClient.fetch(query, {
+      category,
+      language: context.locale,
+    });
+
   if (posts.length === 0) {
     return {
       props: {
         posts: [],
         categoryTitle: '',
         categoryDescription: '',
+        headerProps: {
+          categories: [{ title: '', subtitle: '' }],
+          contact: [{ title: '', subtitle: '' }],
+        },
       },
     };
   }
@@ -224,6 +231,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
       posts,
       categoryTitle: categoryDescription[0].subtitle,
       categoryDescription: categoryDescription[0].description,
+
+      headerProps: { categories, contact },
     },
   };
 };
