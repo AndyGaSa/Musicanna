@@ -17,8 +17,6 @@ const enum LocaleValues {
 }
 
 const Header = ({ categories, contact }: any) => {
-  console.log('🚀 ~ file: Header.tsx:20 ~ Header ~ contact:', contact);
-  console.log('🚀 ~ file: Header.tsx:20 ~ Header ~ categories:', categories);
   const router = useRouter();
   const { pathname, asPath } = router;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
