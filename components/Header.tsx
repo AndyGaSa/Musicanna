@@ -168,21 +168,17 @@ const Header = ({ categories, contact }: any) => {
         >
           <ul className="pt-8 space-y-6 text-xl font-semibold">
             <li>
-              <Link href="/">Inici</Link>
+              <Link href="/">Home</Link>
             </li>
+            {categories?.map((category: any) => (
+              <li key={category.subtitle}>
+                <Link href={`/categories/` + category.title}>
+                  {category.subtitle}
+                </Link>
+              </li>
+            ))}
             <li>
-              <Link href="/categories/cancons">Cançons</Link>
-            </li>
-            <li>
-              <Link href="/categories/contes verticals">Contes Verticals</Link>
-            </li>
-            <li>
-              <Link href="/categories/contacontes i tallers">
-                Contacontes i tallers
-              </Link>
-            </li>
-            <li>
-              <Link href="/quiSom">Qui som</Link>
+              <Link href="/quiSom">{contact ? contact[0]?.subtitle : ''}</Link>
             </li>
             <li className="flex space-x-6">
               <div
