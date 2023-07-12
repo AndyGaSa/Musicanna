@@ -19,9 +19,16 @@ interface Props {
   posts: Post[];
   error?: ServiceError;
   bannerImages: [];
+  categories: [];
+  contact: [];
 }
 
-const Home: React.FC<Props> = ({ posts, bannerImages }) => {
+const Home: React.FC<Props> = ({
+  posts,
+  bannerImages,
+  categories,
+  contact,
+}) => {
   return (
     <div>
       <Head>
@@ -31,7 +38,7 @@ const Home: React.FC<Props> = ({ posts, bannerImages }) => {
 
       <main className="font-bodyFont">
         {/* ============ Header Start here ============ */}
-        <Header />
+        <Header categories={categories} contact={contact} />
         {/* ============ Header End here ============== */}
         {/* ============ Banner Start here ============ */}
         <Banner images={bannerImages} />
@@ -97,15 +104,24 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
     mainImage,
     slug
   },
-  'bannerImages':*[_type == "banner"]}`;
+  'bannerImages':*[_type == "banner"],
+  'categories':*[_type == "category" && language == $language]{
+    title, subtitle
+  },
+  'contact':*[_type == "contact" && language == $language]{
+    title, subtitle
+  }}`;
   try {
-    const { posts, bannerImages } = await sanityClient.fetch(query, {
-      language: context.locale,
-    });
+    const { posts, bannerImages, categories, contact } =
+      await sanityClient.fetch(query, {
+        language: context.locale,
+      });
     return {
       props: {
         posts,
         bannerImages,
+        categories,
+        contact,
       },
     };
   } catch (error) {
@@ -113,6 +129,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       props: {
         posts: [],
         bannerImages: [],
+        categories: [],
+        contact: [],
         error: {
           statusCode: 401,
           message: (error as Error).message,

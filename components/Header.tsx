@@ -16,7 +16,9 @@ const enum LocaleValues {
   eng = 'en',
 }
 
-const Header = () => {
+const Header = ({ categories, contact }: any) => {
+  console.log('🚀 ~ file: Header.tsx:20 ~ Header ~ contact:', contact);
+  console.log('🚀 ~ file: Header.tsx:20 ~ Header ~ categories:', categories);
   const router = useRouter();
   const { pathname, asPath } = router;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,21 +81,17 @@ const Header = () => {
         <div className="hidden md:flex md:pl-4 lg:pl-8 justify-between overflow-x-clip">
           <ul className="flex md:space-x-8 lg:space-x-18  text-lg font-semibold items-center">
             <li>
-              <Link href="/">Inici</Link>
+              <Link href="/">Home</Link>
             </li>
+            {categories?.map((category: any) => (
+              <li key={category.subtitle}>
+                <Link href={`/categories/` + category.title}>
+                  {category.subtitle}
+                </Link>
+              </li>
+            ))}
             <li>
-              <Link href="/categories/cancons">Cançons</Link>
-            </li>
-            <li>
-              <Link href="/categories/contes verticals">Contes Verticals</Link>
-            </li>
-            <li>
-              <Link href="/categories/contacontes i tallers">
-                Contacontes i tallers
-              </Link>
-            </li>
-            <li>
-              <Link href="/quiSom">Qui som</Link>
+              <Link href="/quiSom">{contact ? contact[0]?.subtitle : ''}</Link>
             </li>
             <div
               onClick={() => setdropdownOpen(!dropdownOpen)}
