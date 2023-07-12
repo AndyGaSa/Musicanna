@@ -70,7 +70,7 @@ const Header = ({ categories, contact }: headerProps) => {
   }, [router.locale]);
 
   return (
-    <div className="w-full border-b-[1px] border-b-black font-titleFont sticky bg-white z-50">
+    <div className="w-full border-b-[1px] border-b-black font-titleFont sticky top-0 bg-white z-50">
       <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
         <Link href="/" className="flex-none">
           <div>
