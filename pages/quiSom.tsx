@@ -4,8 +4,17 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 import girlsSvg from '../public/images/girls.svg';
+import { headerProps, Params } from '../typings';
+import { sanityClient } from '../sanity';
+import { GetStaticProps } from 'next';
 
-const QuiSom: React.FC = () => {
+interface Props {
+  headerProps: headerProps;
+}
+
+const QuiSom: React.FC<Props> = ({
+  headerProps: { categories, contact },
+}: Props) => {
   return (
     <div>
       <Head>
@@ -15,7 +24,7 @@ const QuiSom: React.FC = () => {
 
       <main className="font-bodyFont">
         {/* ============ Header Start here ============ */}
-        <Header />
+        <Header categories={categories} contact={contact} />
         {/* ============ Header End here ============== */}
         {/* ============ About us Part Start here ========= */}
         <h1 className="font-titleFont font-large text-[32px] text-primary mt-10 mb-3 text-center">
@@ -131,6 +140,40 @@ const QuiSom: React.FC = () => {
       {/* ============ Footer End here ============== */}
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps<Props, Params> = async (
+  context
+) => {
+  const query = `{
+    'categories':*[_type == "category" && language == $language]{
+      title, subtitle
+    },
+    'contact':*[_type == "contact" && language == $language]{
+      title, subtitle
+    }
+  }`;
+
+  const { categories, contact } = await sanityClient.fetch(query, {
+    language: context.locale,
+  });
+
+  if (!contact || !categories) {
+    return {
+      props: {
+        headerProps: {
+          categories: [{ title: '', subtitle: '' }],
+          contact: [{ title: '', subtitle: '' }],
+        },
+      },
+    };
+  }
+
+  return {
+    props: {
+      headerProps: { categories, contact },
+    },
+  };
 };
 
 export default QuiSom;

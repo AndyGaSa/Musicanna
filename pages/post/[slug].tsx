@@ -2,19 +2,23 @@ import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
-import { Post } from '../../typings';
+import { Post, headerProps, Params } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import PortableText from 'react-portable-text';
 
 interface Props {
   post: Post;
+  headerProps: headerProps;
 }
 
-const Post: React.FC<Props> = ({ post }: Props) => {
+const Post: React.FC<Props> = ({
+  post,
+  headerProps: { categories, contact },
+}: Props) => {
   return (
     <div>
-      <Header />
+      <Header categories={categories} contact={contact} />
       <Image
         className="h-96 w-full object-cover"
         src={urlFor(post.mainImage).url()!}
@@ -118,8 +122,12 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   };
 };
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const query = `*[_type == "post" && slug.current == $slug][0]{
+export const getStaticProps: GetStaticProps<Props, Params> = async (
+  context
+) => {
+  const { slug } = context.params!;
+  const query = `{
+    'post':*[_type == "post" && slug.current == $slug][0]{
         _id,
         publishedAt,
         title,
@@ -131,10 +139,18 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         mainImage,
         slug,
         body,
+      },
+    'categories':*[_type == "category" && language == $language]{
+        title, subtitle
+    },
+    'contact':*[_type == "contact" && language == $language]{
+        title, subtitle
+    },
     }`;
 
-  const post: Post = await sanityClient.fetch(query, {
-    slug: params?.slug,
+  const { post, categories, contact } = await sanityClient.fetch(query, {
+    slug,
+    language: context.locale,
   });
 
   if (!post) {
@@ -145,6 +161,10 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   return {
     props: {
       post,
+      headerProps: {
+        categories,
+        contact,
+      },
     },
     revalidate: 60,
   };

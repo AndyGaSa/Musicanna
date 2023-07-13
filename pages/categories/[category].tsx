@@ -3,16 +3,11 @@ import Head from 'next/head';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { sanityClient, urlFor } from '../../sanity';
-import { Category, categoriesProps } from '../../typings';
+import { Category, categoriesProps, Params } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ParsedUrlQuery } from 'querystring';
 import PortableText from 'react-portable-text';
-
-interface Params extends ParsedUrlQuery {
-  category: string;
-}
 
 const Categories: React.FC<categoriesProps> = ({
   posts,
@@ -154,8 +149,6 @@ const Categories: React.FC<categoriesProps> = ({
   );
 };
 
-export default Categories;
-
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const query = `*[_type == "category"]{
     _id,
@@ -236,3 +229,5 @@ export const getStaticProps: GetStaticProps<categoriesProps, Params> = async (
     },
   };
 };
+
+export default Categories;

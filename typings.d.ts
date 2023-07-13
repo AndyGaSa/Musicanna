@@ -1,3 +1,5 @@
+import { ParsedUrlQuery } from 'querystring';
+
 export interface Post {
   _id: string;
   publishedAt: string;
@@ -46,4 +48,8 @@ export interface categoriesProps {
   categoryTitle: string;
   categoryDescription: [];
   headerProps: headerProps;
+}
+
+export interface Params extends ParsedUrlQuery {
+  category: string;
 }
