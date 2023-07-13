@@ -6,6 +6,7 @@ import { Post, headerProps, Params } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import PortableText from 'react-portable-text';
+import Head from 'next/head';
 
 interface Props {
   post: Post;
@@ -18,81 +19,88 @@ const Post: React.FC<Props> = ({
 }: Props) => {
   return (
     <div>
-      <Header categories={categories} contact={contact} />
-      <Image
-        className="h-96 w-full object-cover"
-        src={urlFor(post.mainImage).url()!}
-        alt={post.title}
-        width={580}
-        height={550}
-      />
-      <div className="max-w-3xl mx-auto">
-        <article className="w-full mx-auto p-5 bg-secondaryColor/10">
-          <h1 className="font-titleFont font-medium text-[32px] text-primary border-b-[1px] border-b-cyan-800 mt-10 mb-3">
-            {post.title}
-          </h1>
-          <h2 className="font-bodyFont  text-[18px] text-gray-500 mb-2">
-            {post.description}
-          </h2>
+      <Head>
+        <title>Musicanna</title>
+        <link rel="icon" href="/smallLogo.ico" />
+      </Head>
+      <main className="font-bodyFont">
+        <Header categories={categories} contact={contact} />
+        <Image
+          className="h-96 w-full object-cover"
+          src={urlFor(post.mainImage).url()!}
+          alt={post.title}
+          width={720}
+          height={720}
+          priority
+        />
+        <div className="max-w-3xl mx-auto">
+          <article className="w-full mx-auto p-5 bg-secondaryColor/10">
+            <h1 className="font-titleFont font-medium text-[32px] text-primary border-b-[1px] border-b-cyan-800 mt-10 mb-3">
+              {post.title}
+            </h1>
+            <h2 className="font-bodyFont  text-[18px] text-gray-500 mb-2">
+              {post.description}
+            </h2>
 
-          <div className="">
-            <PortableText
-              dataset={process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}
-              projectId={
-                process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u8imjmtp'
-              }
-              content={post.body}
-              serializers={{
-                h1: (props: any) => (
-                  <h1
-                    className="text-3xl font-bold my-5 font-titleFont"
-                    {...props}
-                  />
-                ),
-                h2: (props: any) => (
-                  <h2
-                    className="text-2xl font-bold my-5 font-titleFont"
-                    {...props}
-                  />
-                ),
-                h3: (props: any) => (
-                  <h3
-                    className="text-2xl font-bold my-5 font-titleFont"
-                    {...props}
-                  />
-                ),
-                normal: (props: any) => <p className="my-4" {...props} />,
-                li: ({ children }: any) => (
-                  <li className="ml-4 list-disc">{children}</li>
-                ),
-                link: ({ href, children }: any) => (
-                  <a href={href} className="text-cyan-500 hover:underline">
-                    {children}
-                  </a>
-                ),
-                inlineAudio: (value: any) => {
-                  const ref = value.asset._ref;
-                  const projeccId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-                  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+            <div className="">
+              <PortableText
+                dataset={process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}
+                projectId={
+                  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u8imjmtp'
+                }
+                content={post.body}
+                serializers={{
+                  h1: (props: any) => (
+                    <h1
+                      className="text-3xl font-bold my-5 font-titleFont"
+                      {...props}
+                    />
+                  ),
+                  h2: (props: any) => (
+                    <h2
+                      className="text-2xl font-bold my-5 font-titleFont"
+                      {...props}
+                    />
+                  ),
+                  h3: (props: any) => (
+                    <h3
+                      className="text-2xl font-bold my-5 font-titleFont"
+                      {...props}
+                    />
+                  ),
+                  normal: (props: any) => <p className="my-4" {...props} />,
+                  li: ({ children }: any) => (
+                    <li className="ml-4 list-disc">{children}</li>
+                  ),
+                  link: ({ href, children }: any) => (
+                    <a href={href} className="text-cyan-500 hover:underline">
+                      {children}
+                    </a>
+                  ),
+                  inlineAudio: (value: any) => {
+                    const ref = value.asset._ref;
+                    const projeccId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+                    const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
-                  const [_file, id, extension] = ref.split('-');
-                  const audioUrl = `https://cdn.sanity.io/files/${projeccId}/${dataset}/${id}.${extension}`;
+                    const [_file, id, extension] = ref.split('-');
+                    const audioUrl = `https://cdn.sanity.io/files/${projeccId}/${dataset}/${id}.${extension}`;
 
-                  return (
-                    <audio
-                      controls
-                      className="block w-full max-w-md mx-auto mt-10"
-                    >
-                      <source src={audioUrl} type="audio/mpeg" />
-                    </audio>
-                  );
-                },
-              }}
-            />
-          </div>
-        </article>
-      </div>
-      <Footer />
+                    return (
+                      <audio
+                        controls
+                        className="block w-full max-w-md mx-auto mt-10"
+                      >
+                        <source src={audioUrl} type="audio/mpeg" />
+                      </audio>
+                    );
+                  },
+                }}
+              />
+            </div>
+          </article>
+        </div>
+        <Footer />
+      </main>
     </div>
   );
 };
