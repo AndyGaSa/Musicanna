@@ -90,7 +90,7 @@ const Header = ({ categories, contact }: headerProps) => {
               </li>
             ))}
             <li>
-              <Link href="/quiSom">{contact ? contact[0]?.subtitle : ''}</Link>
+              <Link href="/contact">{contact ? contact[0]?.subtitle : ''}</Link>
             </li>
             <div
               onClick={() => setdropdownOpen(!dropdownOpen)}
@@ -179,7 +179,7 @@ const Header = ({ categories, contact }: headerProps) => {
               </li>
             ))}
             <li>
-              <Link href="/quiSom">{contact ? contact[0]?.subtitle : ''}</Link>
+              <Link href="/contact">{contact ? contact[0]?.subtitle : ''}</Link>
             </li>
             <li className="flex space-x-6">
               <div

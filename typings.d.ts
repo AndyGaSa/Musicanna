@@ -33,7 +33,7 @@ export interface ServiceError {
 
 export interface headerProps {
   categories: [{ title; subtitle }];
-  contact: [{ title; subtitle }];
+  contact: [{ title; subtitle; body? }];
 }
 
 export interface indexProps {
