@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
-import girlsSvg from '../public/images/girls.svg';
+import contactPhoto from '../public/images/quiSom.jpg';
 import { headerProps, Params } from '../typings';
 import { sanityClient } from '../sanity';
 import { GetStaticProps } from 'next';
@@ -69,8 +69,13 @@ const Contact: React.FC<Props> = ({
               }}
             />
           </div>
-          <div className="w-full h-fit md:w-1/2">
-            <Image src={girlsSvg} alt="Girls" />
+          <div className="w-full h-fit md:w-1/2 xl:px-16 my-6">
+            <Image
+              className="rounded-xl"
+              src={contactPhoto}
+              alt="Girls"
+              priority
+            />
           </div>
         </div>
         {/* ============ About us Part End here ========== */}
@@ -98,7 +103,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const { categories, contact } = await sanityClient.fetch(query, {
     language: context.locale,
   });
-  console.log('asdfasd', contact[0]);
   if (!contact || !categories) {
     return {
       props: {
