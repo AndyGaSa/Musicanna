@@ -38,7 +38,7 @@ const Home: React.FC<indexProps> = ({
           {posts.map((post) => (
             <Link key={post._id} href={`/post/${post.slug.current}`}>
               <div className="border-[1px] border-secondaryColor border-opacity-40 h-[450px] group">
-                <div className="h-3/5 w-full overflow-hidden">
+                <div className="h-4/6 w-full overflow-hidden">
                   <Image
                     width={380}
                     height={350}
@@ -47,16 +47,9 @@ const Home: React.FC<indexProps> = ({
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-100 duration-300 group-hover:scale-110"
                   />
                 </div>
-                <div className="h-2/5 w-full flex flex-col justify-center">
+                <div className="h-2/6 w-full flex flex-col justify-center">
                   <div className="flex justify-between items-center px-4 py-1 border-b-[1px] border-b-gray-500">
                     <p>{post.title}</p>
-                    <Image
-                      className="w-12 h-12 rounded-full object-cover"
-                      src={urlFor(post.author?.image)?.url()!}
-                      alt="authorImg"
-                      width={30}
-                      height={30}
-                    />
                   </div>
                   <p className="py-2 px-4 text-base">
                     {post.description?.substring(0, 60)}... by -{' '}
