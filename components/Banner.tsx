@@ -7,13 +7,11 @@ function SampleNextArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className="w-16 h-8 absolute bottom-32 z-30 right-10 border-[1px] border-gray-900 hover:border-gray-800 bg-black/50 hover:bg-black shadow-btnShadow overflow-hidden"
+      className="w-10 h-full absolute top-[0%] z-30 right-0 bg-black/20 hover:bg-black/30 shadow-btnShadow overflow-hidden"
       onClick={onClick}
     >
-      <div className="w-full h-full text-gray-300 text-sm relative flex items-center justify-end cursor-pointer group  ">
-        <span className="text-lg">
-          <FaChevronRight />
-        </span>
+      <div className="w-full h-full text-gray-300 text-sm relative flex items-center justify-end cursor-pointer">
+        <FaChevronRight size={30} />
       </div>
     </div>
   );
@@ -23,13 +21,11 @@ function SamplePrevArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className="w-16 h-8 absolute bottom-32 z-30 left-10 border-[1px] border-gray-900  hover:border-gray-800 bg-black/50 hover:bg-black shadow-btnShadow overflow-hidden"
+      className="w-10 h-full absolute top-[0%] z-30 left-0 bg-black/20 hover:bg-black/30 shadow-btnShadow overflow-hidden"
       onClick={onClick}
     >
-      <div className="w-full h-full text-gray-300 text-sm relative flex items-center justify-between cursor-pointer group  ">
-        <span className="text-lg">
-          <FaChevronLeft />
-        </span>
+      <div className="w-full h-full text-gray-300 text-sm relative flex items-center justify-between cursor-pointer">
+        <FaChevronLeft size={30} />
       </div>
     </div>
   );
@@ -40,7 +36,7 @@ const Banner = ({ images }: any) => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 10,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
@@ -48,7 +44,7 @@ const Banner = ({ images }: any) => {
   };
   return (
     <div className="w-full h-auto lg:h-[550px] relative">
-      <Slider {...settings}>
+      <Slider {...settings} className="flex flex-col">
         {imagesSorted.map((image: any, index: any) => (
           <div className="lg:h-[600px]" key={image._id}>
             <Image
