@@ -50,12 +50,12 @@ const Banner = ({ images }: any) => {
     <div className="w-full h-auto lg:h-[550px] relative">
       <Slider {...settings}>
         {imagesSorted.map((image: any, index: any) => (
-          <div key={image._id}>
+          <div className="lg:h-[600px]" key={image._id}>
             <Image
               className="xl:h-[68vh] h-[50vh] w-full object-cover"
               src={urlFor(image.image)?.url()!}
-              width={1920}
-              height={1080}
+              width={1000}
+              height={700}
               priority={index === 0}
               alt="bannerImg"
               data-testid="bannerImg"
