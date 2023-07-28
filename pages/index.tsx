@@ -30,7 +30,7 @@ const Home: React.FC<indexProps> = ({
         {/* ============ Banner Start here ============ */}
         <Banner images={bannerImages} />
         {/* ============ Banner End here ============== */}
-        <div className="max-w-7xl mx-auto relative">
+        <div className="max-w-7xl mx-auto relative z-30">
           <BannerBottom homeText={homeText} />
         </div>
         {/* ============ Banner-Bottom End here ======= */}
