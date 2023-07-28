@@ -7,11 +7,11 @@ function SampleNextArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className="w-10 h-full absolute top-[0%] z-30 right-0 bg-black/20 hover:bg-black/30 shadow-btnShadow overflow-hidden"
+      className="w-20 h-full absolute top-[0%] z-30 right-0 bg-gradient-to-l from-gray-900/20 hover:from-gray-900 overflow-hidden"
       onClick={onClick}
     >
-      <div className="w-full h-full text-gray-300 text-sm relative flex items-center justify-end cursor-pointer">
-        <FaChevronRight size={30} />
+      <div className="w-full h-full p-2 text-gray-300 text-sm relative flex items-center justify-end cursor-pointer">
+        <FaChevronRight size={40} />
       </div>
     </div>
   );
@@ -21,11 +21,11 @@ function SamplePrevArrow(props: any) {
   const { onClick } = props;
   return (
     <div
-      className="w-10 h-full absolute top-[0%] z-30 left-0 bg-black/20 hover:bg-black/30 shadow-btnShadow overflow-hidden"
+      className="w-20 h-full absolute top-[0%] z-30 left-0 bg-gradient-to-r from-gray-900/50  hover:from-gray-900 overflow-hidden"
       onClick={onClick}
     >
-      <div className="w-full h-full text-gray-300 text-sm relative flex items-center justify-between cursor-pointer">
-        <FaChevronLeft size={30} />
+      <div className="w-full h-full  p-2 text-gray-300 text-sm relative flex items-center justify-between cursor-pointer">
+        <FaChevronLeft size={40} />
       </div>
     </div>
   );
