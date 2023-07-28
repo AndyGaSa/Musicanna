@@ -2,7 +2,7 @@ import React from 'react';
 
 const BannerBottom = () => {
   return (
-    <div className="max-w-5xl mx-auto flex flex-col gap-10 lg:gap-0 lg:flex-row justify-center items-center h-auto lg:h-60 bg-bannerColor text-white py-10 px-8 -mt-20 z-50">
+    <div className="relative max-w-5xl mx-auto flex flex-col gap-10 lg:gap-0 lg:flex-row justify-center items-center h-auto lg:h-60 bg-bannerColor text-white py-10 px-8 -mt-9 z-50">
       <div className="max-w-5xl mx-auto z-50 cloud-content">
         <div className="cloud-1 cloud-block">
           <div className="cloud"></div>
