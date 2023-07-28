@@ -14,6 +14,7 @@ const Home: React.FC<indexProps> = ({
   posts,
   bannerImages,
   headerProps: { contact, categories },
+  bannerBottomProps: { homeText },
 }) => {
   return (
     <div>
@@ -30,7 +31,7 @@ const Home: React.FC<indexProps> = ({
         <Banner images={bannerImages} />
         {/* ============ Banner End here ============== */}
         <div className="max-w-7xl mx-auto relative">
-          <BannerBottom />
+          <BannerBottom homeText={homeText} />
         </div>
         {/* ============ Banner-Bottom End here ======= */}
         {/* ============ Post Part Start here ========= */}
@@ -89,10 +90,13 @@ export const getServerSideProps: GetServerSideProps<indexProps> = async (
     },
     'contact':*[_type == "contact" && language == $language]{
       title, subtitle
+    },
+    'homeText':*[_type == "homeText" && language == $language]{
+      title, subtitle
     }
   }`;
   try {
-    const { posts, bannerImages, categories, contact } =
+    const { posts, bannerImages, categories, contact, homeText } =
       await sanityClient.fetch(query, {
         language: context.locale,
       });
@@ -104,6 +108,7 @@ export const getServerSideProps: GetServerSideProps<indexProps> = async (
           categories,
           contact,
         },
+        bannerBottomProps: { homeText },
       },
     };
   } catch (error) {
@@ -115,6 +120,7 @@ export const getServerSideProps: GetServerSideProps<indexProps> = async (
           categories: [{ title: '', subtitle: '' }],
           contact: [{ title: '', subtitle: '' }],
         },
+        bannerBottomProps: { homeText: [{ title: '', subtitle: '' }] },
         error: {
           statusCode: 401,
           message: (error as Error).message,

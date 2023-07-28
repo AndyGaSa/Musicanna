@@ -35,12 +35,16 @@ export interface headerProps {
   categories: [{ title; subtitle }];
   contact: [{ title; subtitle; body? }];
 }
+export interface bannerBottomProps {
+  homeText: [{ title; subtitle }];
+}
 
 export interface indexProps {
   posts: Post[];
   error?: ServiceError;
   bannerImages: [];
   headerProps: headerProps;
+  bannerBottomProps: bannerBottomProps;
 }
 
 export interface categoriesProps {

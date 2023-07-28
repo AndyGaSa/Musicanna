@@ -18,7 +18,7 @@ export default defineConfig({
         {id: 'es', title: 'Spanish'},
         {id: 'en', title: 'English'},
       ],
-      schemaTypes: ['post', 'category', 'contact'],
+      schemaTypes: ['post', 'category', 'contact', 'homeText'],
     }),
   ],
   schema: {

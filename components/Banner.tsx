@@ -53,8 +53,8 @@ const Banner = ({ images }: any) => {
             <Image
               className="xl:h-[68vh] h-[50vh] w-full object-cover"
               src={urlFor(image.image)?.url()!}
-              width={1000}
-              height={700}
+              width={1920}
+              height={1080}
               priority={index === 0}
               alt="bannerImg"
               data-testid="bannerImg"
