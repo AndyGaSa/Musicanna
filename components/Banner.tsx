@@ -36,7 +36,7 @@ const Banner = ({ images }: any) => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 10,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
