@@ -29,7 +29,7 @@ const Contact: React.FC<Props> = ({
         {/* ============ Header End here ============== */}
         {/* ============ About us Part Start here ========= */}
         <h1 className="font-titleFont font-xl text-[34px] text-primary mt-12 mb-4 text-center">
-          {contact[0].subtitle.toUpperCase()}
+          {contact[0]?.subtitle.toUpperCase()}
         </h1>
         <div className="max-w-7xl mx-auto p-6 flex flex-wrap">
           <div className="w-full md:w-1/2 mb-6 md:mb-0 text-justify">
@@ -38,7 +38,8 @@ const Contact: React.FC<Props> = ({
               projectId={
                 process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u8imjmtp'
               }
-              content={contact[0].body}
+              content={contact[0]?.body || {}}
+              
               serializers={{
                 h1: (props: any) => (
                   <h1
