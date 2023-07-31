@@ -7,6 +7,7 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import catSvg from '../public/cat.svg';
 import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
+import frSvg from '/public/fr.svg';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { headerProps } from '../typings';
 import { motion } from 'framer-motion';
@@ -15,6 +16,7 @@ const enum LocaleValues {
   es = 'es',
   ca = 'ca',
   eng = 'en',
+  fr = 'fr',
 }
 
 const Header = ({ categories, contact }: headerProps) => {
@@ -30,6 +32,8 @@ const Header = ({ categories, contact }: headerProps) => {
       return esSvg;
     } else if (lang === LocaleValues.eng) {
       return enSvg;
+    } else if (lang === LocaleValues.fr) {
+      return frSvg;
     } else {
       return catSvg;
     }
@@ -145,6 +149,15 @@ const Header = ({ categories, contact }: headerProps) => {
                   Eng
                 </a>
               </div>
+              <div
+                className="flex hover:cursor-pointer"
+                onClick={() => changeLanguage(LocaleValues.fr)}
+              >
+                <Image src={frSvg} alt={'fr flag'} height={18} width={18} />
+                <a className="block py-2 px-5 text-base font-semibold text-body-color hover:bg-primary hover:bg-opacity-5 hover:text-primary">
+                  Fr
+                </a>
+              </div>
             </div>
           </ul>
         </div>
@@ -240,6 +253,17 @@ const Header = ({ categories, contact }: headerProps) => {
                   <Image src={enSvg} alt={'eng flag'} height={18} width={18} />
                   <a className="block py-2 px-5 text-base text-xl font-semibold text-black hover:bg-primary hover:bg-opacity-5 hover:text-primary">
                     Eng
+                  </a>
+                </div>
+                <div
+                  className="flex hover:cursor-pointer"
+                  onClick={() => {
+                    changeLanguage(LocaleValues.fr);
+                  }}
+                >
+                  <Image src={frSvg} alt={'Fr flag'} height={18} width={18} />
+                  <a className="block py-2 px-5 text-base text-xl font-semibold text-black hover:bg-primary hover:bg-opacity-5 hover:text-primary">
+                    Fr
                   </a>
                 </div>
               </div>
