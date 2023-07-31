@@ -19,8 +19,8 @@ const BannerBottom = ({ homeText }: bannerBottomProps) => {
         </div>
       </div>
       <div className="w-full lg:w-[60%] flex flex-col gap-3">
-        <h3 className="font-bold text-xl md:text-3xl">{homeText[0].title}</h3>
-        <h4 className="text-xl text-white/80">{homeText[0].subtitle}</h4>
+        <h3 className="font-bold text-xl md:text-3xl">{homeText[0]?.title}</h3>
+        <h4 className="text-xl text-white/80">{homeText[0]?.subtitle}</h4>
       </div>
     </div>
   );
