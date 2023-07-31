@@ -73,7 +73,7 @@ const Home: React.FC<indexProps> = ({
 export const getServerSideProps: GetServerSideProps<indexProps> = async (
   context
 ) => {
-  const query = `{'posts':*[_type == "post"  && language == $language] {
+  const query = `{'posts':*[_type == "post"  && language == $language][0..5] {
       _id,
       title,
       author -> {
