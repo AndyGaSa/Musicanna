@@ -84,7 +84,7 @@ export const getServerSideProps: GetServerSideProps<indexProps> = async (
       mainImage,
       slug
     },
-    'bannerImages':*[_type == "banner"],
+    'bannerImages':*[_type == "banner"] | order(order asc),
     'categories':*[_type == "category" && language == $language]{
       title, subtitle
     },

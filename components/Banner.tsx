@@ -32,7 +32,6 @@ function SamplePrevArrow(props: any) {
 }
 
 const Banner = ({ images }: any) => {
-  const imagesSorted = images.sort((a: any, b: any) => a.order - b.order);
   const settings = {
     dots: false,
     infinite: true,
@@ -48,7 +47,7 @@ const Banner = ({ images }: any) => {
   return (
     <div className="w-full h-auto lg:h-[550px] relative">
       <Slider {...settings} className="flex flex-col">
-        {imagesSorted.map((image: any, index: any) => (
+        {images.map((image: any, index: any) => (
           <div className="lg:h-[600px]" key={image._id}>
             <Image
               className="xl:h-[68vh] h-[50vh] w-full object-cover"
