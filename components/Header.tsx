@@ -199,7 +199,7 @@ const Header = ({ categories, contact }: headerProps) => {
                 onClick={() => setdropdownOpen(!dropdownOpen)}
                 className="w-12 h-6 flex items-center hover:cursor-pointer"
               >
-                <p className="pr-2">Idioma</p>
+                <p className="pr-2">Lang</p>
                 <Image
                   src={currentLocaleSvg}
                   alt={'currentFlag'}
