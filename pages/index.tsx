@@ -21,6 +21,7 @@ const Home: React.FC<indexProps> = ({
       <Head>
         <title>Musicanna</title>
         <link rel="icon" href="/smallLogo.ico" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
 
       <main className="font-bodyFont">
