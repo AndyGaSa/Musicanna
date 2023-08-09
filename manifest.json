@@ -1,0 +1,37 @@
+{
+  "background_color": "#ffffff",
+  "description": "Musicanna és una manera de crear, fer i viure la música i els contes.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Musicanna",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Musicanna",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [
+    "books",
+    "education",
+    "entertainment",
+    "kids",
+    "music"
+  ],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/smallLogo.ico"
+    },
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "contact",
+      "url": "/contact",
+      "description": "contact page"
+    }
+  ],
+  "lang": "ca"
+}
