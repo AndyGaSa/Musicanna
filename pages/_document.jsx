@@ -9,6 +9,7 @@ export default function Document() {
           rel="stylesheet"
         ></link>
                 <link rel="manifest" href="/manifest.json" />
+                <meta name="theme-color" content="#fff" />
       </Head>
       <body>
         <Main />

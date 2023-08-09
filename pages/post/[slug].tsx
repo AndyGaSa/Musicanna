@@ -22,7 +22,6 @@ const Post: React.FC<Props> = ({
       <Head>
         <title>Musicanna</title>
         <link rel="icon" href="/smallLogo.ico" />
-        <link rel="manifest" href="/manifest.json" />
       </Head>
       <main className="font-bodyFont">
         <Header categories={categories} contact={contact} />
