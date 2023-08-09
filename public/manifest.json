@@ -16,7 +16,28 @@
     "kids",
     "music"
   ],
-  "screenshots": [],
+  "screenshots": [
+    {
+      "src": "public/screenshots/1280x800-screenshot.png",
+      "sizes": "1280x800",
+      "type": "image/png"
+    },
+    {
+      "src": "public/screenshots/750x1334-screenshot.png",
+      "sizes": "750x1334",
+      "type": "image/png"
+    },
+    {
+      "src": "public/screenshots/screenshots/1280x800-screenshot.png",
+      "sizes": "1280x800",
+      "type": "image/png"
+    },
+    {
+      "src": "public/screenshots/screenshots/750x1334-screenshot.png",
+      "sizes": "750x1334",
+      "type": "image/png"
+    }
+  ],
   "icons": [
     {
       "src": "public/images/manifest-icon-192.maskable.png",
