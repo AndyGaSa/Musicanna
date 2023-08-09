@@ -1,12 +1,12 @@
 {
+  "description": "musicanna és una manera de crear, fer i viure la música i els contes.",
   "background_color": "#ffffff",
-  "description": "Musicanna és una manera de crear, fer i viure la música i els contes.",
   "dir": "ltr",
   "display": "standalone",
-  "name": "Musicanna",
+  "name": "musicanna",
   "orientation": "any",
   "scope": "/",
-  "short_name": "Musicanna",
+  "short_name": "musicanna",
   "start_url": "/",
   "theme_color": "#ffffff",
   "categories": [
