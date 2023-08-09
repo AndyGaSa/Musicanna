@@ -22,6 +22,7 @@ const Categories: React.FC<categoriesProps> = ({
         <Head>
           <title>Musicanna</title>
           <link rel="icon" href="/smallLogo.ico" />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <main className="font-bodyFont">
           <div className="flex flex-col min-h-screen">
