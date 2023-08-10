@@ -9,13 +9,7 @@
   "short_name": "musicanna",
   "start_url": "/",
   "theme_color": "#3579f6",
-  "categories": [
-    "books",
-    "education",
-    "entertainment",
-    "kids",
-    "music"
-  ],
+  "categories": ["books", "education", "entertainment", "kids", "music"],
   "screenshots": [
     {
       "src": "public/screenshots/1280x800-screenshot.png",
@@ -40,25 +34,25 @@
   ],
   "icons": [
     {
-      "src": "public/images/manifest-icon-192.maskable.png",
+      "src": "public/favicon.ico",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "public/images/manifest-icon-192.maskable.png",
+      "src": "public/favicon.ico",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "public/images/manifest-icon-512.maskable.png",
+      "src": "public/favicon.ico",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "public/images/manifest-icon-512.maskable.png",
+      "src": "public/favicon.ico",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
