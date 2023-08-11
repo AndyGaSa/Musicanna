@@ -2,19 +2,34 @@ import { render, screen } from '@testing-library/react';
 import Banner from '../components/Banner';
 
 describe('Banner', () => {
-  test('renders the banner component', () => {
-    render(<Banner />);
+  it('renders the banner component', () => {
+    // Mock the images prop with correctly formatted _ref values
+    const images = [
+      {
+        _id: '1',
+        image: {
+          asset: { _ref: 'image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg' },
+        },
+      },
+      {
+        _id: '2',
+        image: {
+          asset: { _ref: 'image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg' },
+        },
+      },
+      {
+        _id: '3',
+        image: {
+          asset: { _ref: 'image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg' },
+        },
+      },
+    ];
 
-    // Assert
+    // Render the Banner component with the mocked images prop
+    render(<Banner images={images} />);
 
-    const bannerImgOne = screen.queryAllByTestId(/bannerImgOne/i);
-    const bannerImgTwo = screen.queryAllByTestId(/bannerImgTwo/i);
-    const bannerImgThree = screen.queryAllByTestId(/bannerImgThree/i);
-    const bannerImgFour = screen.queryAllByTestId(/bannerImgFour/i);
-
-    expect(bannerImgOne.length).toBeGreaterThanOrEqual(1);
-    expect(bannerImgTwo.length).toBeGreaterThanOrEqual(1);
-    expect(bannerImgThree.length).toBeGreaterThanOrEqual(1);
-    expect(bannerImgFour.length).toBeGreaterThanOrEqual(1);
+    // Assert that the banner images are rendered
+    const bannerImages = screen.getAllByTestId('bannerImg');
+    expect(bannerImages.length).toBe(3);
   });
 });
