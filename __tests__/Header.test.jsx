@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Header from '../components/Header';
 import { useRouter } from 'next/router';
 
@@ -14,6 +14,8 @@ useRouter.mockReturnValue({
   query: {},
   // return mock for push method
   push: pushMock,
+  // add mock for asPath attribute
+  asPath: '/',
   // ... add the props or methods you need
 });
 
@@ -59,5 +61,37 @@ describe('Header component', () => {
     expect(frFlag).toBeInTheDocument();
   });
 
-  // Add more test cases as needed for other parts of the header component
+  it('toggles the menu when the menu button is clicked', () => {
+    render(<Header categories={[]} contact={[]} />);
+    const menuButton = screen.getByLabelText('Toggle Menu');
+
+    // Click on the menu button
+    fireEvent.click(menuButton);
+
+    // Check that the menu is open
+    expect(screen.getByLabelText('menu')).toBeInTheDocument();
+
+    // Click on the menu button again
+    fireEvent.click(menuButton);
+
+    // Check that the menu is closed
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+  });
+
+  it('changes the language when a language option is clicked', () => {
+    render(<Header categories={[]} contact={[]} />);
+
+    // Open the language dropdown
+    fireEvent.click(screen.getByLabelText('Toggle Menu'));
+
+    // Click on the first language option
+    fireEvent.click(screen.getAllByRole('img', { name: 'es flag' })[0]);
+
+    // Check that the router navigated to the correct page with the new locale
+    expect(pushMock).toHaveBeenCalledWith(
+      expect.anything(),
+      '/',
+      expect.objectContaining({ locale: 'es' })
+    );
+  });
 });
