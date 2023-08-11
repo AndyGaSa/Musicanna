@@ -180,7 +180,10 @@ const Header = ({ categories, contact }: headerProps) => {
           variants={menuVariants}
           className="absolute max-w-7xl mx-auto px-4 pb-8 text-white w-full bg-grey md:hidden"
         >
-          <ul className="pt-8 space-y-6 text-xl font-semibold">
+          <ul
+            className="pt-8 space-y-6 text-xl font-semibold"
+            aria-label="menu"
+          >
             <li>
               <Link href="/">Home</Link>
             </li>
