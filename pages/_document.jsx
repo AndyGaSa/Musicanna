@@ -10,6 +10,10 @@ export default function Document() {
         ></link>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#fff" />
+        <meta
+          name="description"
+          content="Descobreix un món de contes i cançons per a nens i nenes en català. Aquesta web t’ofereix històries divertides, educatives i originals, acompanyades de música i il·lustracions. Ideal per estimular la imaginació, l’aprenentatge i l’amor per la llengua."
+        />
       </Head>
       <body>
         <Main />
