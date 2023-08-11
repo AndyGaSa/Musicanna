@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { useRouter } from 'next/router';
 import Home from '../pages/index';
 
@@ -36,16 +36,27 @@ describe('Home', () => {
           },
         },
       ],
-      bannerImages: [],
+      bannerImages: [
+        {
+          _id: '1',
+          image: {
+            asset: { _ref: 'image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg' },
+          },
+        },
+      ],
       headerProps: {
-        categories: [],
-        contact: [],
+        categories: [
+          { title: 'Category 1', subtitle: 'Categories Subtitle 1' },
+        ],
+        contact: [{ title: 'Contact 1', subtitle: 'Contact Subtitle 1' }],
       },
-      bannerBottomProps: { homeText: [] },
+      bannerBottomProps: {
+        homeText: [{ title: 'Home Text 1', subtitle: 'index Subtitle 1' }],
+      },
     };
 
     // Render the Home component with the mocked props
-    const { getByText } = render(<Home {...props} />);
+    const { getByText, getAllByTestId } = render(<Home {...props} />);
 
     // Test the rendering of specific posts
     props.posts.forEach((post) => {
@@ -54,6 +65,24 @@ describe('Home', () => {
         getByText(`${post.description.substring(0, 60)}... by -`)
       ).toBeInTheDocument();
       expect(getByText(post.author.name)).toBeInTheDocument();
+    });
+
+    // Test the rendering of banner images
+    const bannerImages = getAllByTestId('bannerImg');
+    expect(bannerImages.length).toBe(props.bannerImages.length);
+
+    // Test the rendering of categories and contact in the header
+    props.headerProps.categories.forEach((category) => {
+      expect(screen.getAllByText(category.subtitle).length).toBeGreaterThan(0);
+    });
+    props.headerProps.contact.forEach((contact) => {
+      expect(screen.getAllByText(contact.subtitle).length).toBeGreaterThan(0);
+    });
+
+    // Test the rendering of home text in the banner bottom
+    props.bannerBottomProps.homeText.forEach((homeText) => {
+      expect(getByText(homeText.title)).toBeInTheDocument();
+      expect(getByText(homeText.subtitle)).toBeInTheDocument();
     });
   });
 });
