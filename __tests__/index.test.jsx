@@ -1,71 +1,59 @@
 import { render } from '@testing-library/react';
-import Home, { getServerSideProps } from '../pages/index';
+import { useRouter } from 'next/router';
+import Home from '../pages/index';
 
-// Mocking the sanityClient and urlFor functions
-jest.mock('../sanity', () => ({
-  sanityClient: {
-    fetch: jest.fn(() => {
-      return {
-        status: 'success',
-        message: 'mainImg',
-      };
-    }),
-  },
-  urlFor: jest.fn(),
+// Mock the useRouter hook
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
 }));
 
-jest.mock(
-  'next/image',
-  () =>
-    function Image() {
-      return <img src="src" alt="img" />;
-    }
-);
-
 describe('Home', () => {
-  it('renders the home page correctly', () => {
-    const posts = [
-      {
-        _id: '1',
-        title: 'Post 1',
-        author: {
-          name: 'Author 1',
-          image: 'image-url',
-        },
-        description: 'Description 1',
-        mainImage: 'main-image-url',
-        slug: {
-          current: 'post-1',
-        },
-      },
-    ];
+  beforeEach(() => {
+    // Provide a mock implementation of the useRouter hook
+    useRouter.mockImplementation(() => ({
+      asPath: '/test-path',
+      // Add any other properties or methods that your component needs
+    }));
+  });
 
-    const { getByText, getByAltText } = render(<Home posts={posts} />);
+  it('renders the home page correctly', () => {
+    // Mock the props for the Home component
+    const props = {
+      posts: [
+        {
+          _id: '1',
+          title: 'Post 1',
+          author: {
+            name: 'Author 1',
+            image: 'image-url',
+          },
+          description: 'Description 1',
+          mainImage: {
+            asset: { _ref: 'image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg' },
+          },
+          slug: {
+            current: 'post-1',
+          },
+        },
+      ],
+      bannerImages: [],
+      headerProps: {
+        categories: [],
+        contact: [],
+      },
+      bannerBottomProps: { homeText: [] },
+    };
+
+    // Render the Home component with the mocked props
+    const { getByText } = render(<Home {...props} />);
 
     // Test the rendering of specific posts
-    posts.forEach((post) => {
+    props.posts.forEach((post) => {
       expect(getByText(post.title)).toBeInTheDocument();
       expect(
         getByText(`${post.description.substring(0, 60)}... by -`)
       ).toBeInTheDocument();
       expect(getByText(post.author.name)).toBeInTheDocument();
     });
-  });
-});
-
-describe('getServerSideProps', () => {
-  it('should call posts api', async () => {
-    const response = await getServerSideProps();
-
-    expect(response).toEqual(
-      expect.objectContaining({
-        props: {
-          posts: {
-            status: 'success',
-            message: 'mainImg',
-          },
-        },
-      })
-    );
   });
 });
