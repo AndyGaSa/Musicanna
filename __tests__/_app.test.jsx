@@ -1,6 +1,11 @@
 import { render } from '@testing-library/react';
 import MyApp from '../pages/_app';
 
+// Mock the Analytics component
+jest.mock('@vercel/analytics/react', () => ({
+  Analytics: () => null,
+}));
+
 describe('MyApp', () => {
   it('renders the component with props', () => {
     const props = {
