@@ -1,6 +1,6 @@
 # Next.js + Tailwind CSS Example
 
-This website  use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js.
+This website use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js.
 
 ## How to use
 

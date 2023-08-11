@@ -21,8 +21,7 @@ export default defineType({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      description:
-      'text secundari de la pagina de inici en el idioma solicitat',
+      description: 'text secundari de la pagina de inici en el idioma solicitat',
     }),
   ],
   preview: {

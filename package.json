@@ -5,7 +5,16 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --coverage",
-    "lint": "next lint"
+    "lint": "next lint",
+    "precommit": "npm run lint && npm run format",
+    "prepush": "npm run test && npm run build",
+    "format": "prettier --write ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm run prepush"
+    }
   },
   "dependencies": {
     "@portabletext/react": "^3.0.0",
@@ -35,9 +44,12 @@
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "^10.4.12",
     "eslint": "^8.43.0",
+    "eslint-config-next": "^13.4.13",
+    "husky": "^8.0.3",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.18",
+    "prettier": "^3.0.1",
     "sanity": "^3.14.1",
     "tailwindcss": "^3.2.4",
     "typescript": "4.9.4"

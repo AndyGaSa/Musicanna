@@ -3,6 +3,7 @@
 
 // Used for __tests__/testing-library.js
 // Learn more: https://github.com/testing-library/jest-dom
+import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 
 window.matchMedia =
@@ -14,3 +15,8 @@ window.matchMedia =
       removeListener: function () {},
     };
   };
+
+function MockImage(props) {
+  return React.createElement('img', props);
+}
+jest.mock('next/image', () => MockImage);

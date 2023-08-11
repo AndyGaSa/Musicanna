@@ -39,7 +39,6 @@ const Contact: React.FC<Props> = ({
                 process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u8imjmtp'
               }
               content={contact[0]?.body || {}}
-              
               serializers={{
                 h1: (props: any) => (
                   <h1

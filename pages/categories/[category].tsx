@@ -40,8 +40,8 @@ const Categories: React.FC<categoriesProps> = ({
                 currently.
               </h2>
               <h2>
-                Nous sommes désolés! Il n'y a pas encore de messages pour cette
-                langue.
+                Nous sommes désolés! Il n`&apos;`,y a pas encore de messages
+                pour cette langue.
               </h2>
             </div>
 
