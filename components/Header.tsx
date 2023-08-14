@@ -26,16 +26,15 @@ const Header = ({ categories, contact }: headerProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [currentLocaleSvg, setLocaleSvg] = useState(catSvg);
 
+  const LOCALE_SVG_MAP = {
+    [LocaleValues.es]: esSvg,
+    [LocaleValues.eng]: enSvg,
+    [LocaleValues.fr]: frSvg,
+    [LocaleValues.ca]: catSvg,
+  };
+
   const selectFlagImage = (lang: LocaleValues) => {
-    if (lang === LocaleValues.es) {
-      return esSvg;
-    } else if (lang === LocaleValues.eng) {
-      return enSvg;
-    } else if (lang === LocaleValues.fr) {
-      return frSvg;
-    } else {
-      return catSvg;
-    }
+    return LOCALE_SVG_MAP[lang] || catSvg; // fallback to catSvg if not found
   };
 
   const toggleMenu = () => {
@@ -56,7 +55,7 @@ const Header = ({ categories, contact }: headerProps) => {
   }, [router.locale]);
 
   return (
-    <div className="w-full border-b-[1px] border-b-black font-titleFont sticky top-0 bg-white z-50">
+    <header className="w-full border-b-[1px] border-b-black font-titleFont sticky top-0 bg-white z-50">
       <div className="relative max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
         <Link href="/" className="flex-none">
           <div>
@@ -83,7 +82,7 @@ const Header = ({ categories, contact }: headerProps) => {
           changeLanguage={changeLanguage}
         />
       </div>
-    </div>
+    </header>
   );
 };
 
