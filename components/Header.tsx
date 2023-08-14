@@ -18,6 +18,13 @@ export const enum LocaleValues {
   fr = 'fr',
 }
 
+const LOCALE_SVG_MAP = {
+  [LocaleValues.es]: esSvg,
+  [LocaleValues.eng]: enSvg,
+  [LocaleValues.fr]: frSvg,
+  [LocaleValues.ca]: catSvg,
+};
+
 const Header = ({ categories, contact }: headerProps) => {
   const router = useRouter();
   const { asPath } = router;
@@ -25,13 +32,6 @@ const Header = ({ categories, contact }: headerProps) => {
   const [menuAnimation, setMenuAnimation] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [currentLocaleSvg, setLocaleSvg] = useState(catSvg);
-
-  const LOCALE_SVG_MAP = {
-    [LocaleValues.es]: esSvg,
-    [LocaleValues.eng]: enSvg,
-    [LocaleValues.fr]: frSvg,
-    [LocaleValues.ca]: catSvg,
-  };
 
   const selectFlagImage = (lang: LocaleValues) => {
     return LOCALE_SVG_MAP[lang] || catSvg; // fallback to catSvg if not found

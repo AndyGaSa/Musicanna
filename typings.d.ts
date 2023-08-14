@@ -22,8 +22,9 @@ export interface Post {
 }
 
 export interface Category {
-  _id: string;
+  _id?: string;
   title: string;
+  subtitle?: string;
 }
 
 export interface ServiceError {
@@ -32,25 +33,23 @@ export interface ServiceError {
 }
 
 export interface headerProps {
-  categories: [{ title; subtitle }];
-  contact: [{ title; subtitle; body? }];
+  categories: { title: string; subtitle: string }[];
+  contact: { title: string; subtitle: string; body?: any }[];
 }
 
-export interface DesktopMenu extends headerProps {
-  setDropdownOpen: any;
-  dropdownOpen: any;
-  currentLocaleSvg: any;
-  changeLanguage: any;
+export interface CommonMenuProps extends headerProps {
+  setDropdownOpen: (value: boolean) => void;
+  dropdownOpen: boolean;
+  currentLocaleSvg: string;
+  changeLanguage: (lang: LocaleValues) => void;
 }
 
-export interface MobileMenu extends headerProps {
-  setDropdownOpen: any;
-  dropdownOpen: any;
-  toggleMenu: any;
-  menuAnimation: any;
-  isMenuOpen: any;
-  currentLocaleSvg: any;
-  changeLanguage: any;
+export interface DesktopMenu extends CommonMenuProps {}
+
+export interface MobileMenu extends CommonMenuProps {
+  toggleMenu: () => void;
+  menuAnimation: boolean;
+  isMenuOpen: boolean;
 }
 
 export interface bannerBottomProps {

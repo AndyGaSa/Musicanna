@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { DesktopMenu as DesktopMenuProps } from '../typings';
 import LanguageDropdown from './LanguageDropdown';
+import CategoriesList from './CategoriesList';
 
 const DesktopMenu = ({
   categories,
@@ -16,13 +17,7 @@ const DesktopMenu = ({
         <li>
           <Link href="/">Home</Link>
         </li>
-        {categories?.map((category: any) => (
-          <li key={category.subtitle}>
-            <Link href={`/categories/` + category.title}>
-              {category.subtitle}
-            </Link>
-          </li>
-        ))}
+        <CategoriesList categories={categories} />
         <li>
           <Link href="/contact">{contact ? contact[0]?.subtitle : ''}</Link>
         </li>

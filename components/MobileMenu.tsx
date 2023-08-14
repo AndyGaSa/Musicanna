@@ -3,6 +3,7 @@ import { MobileMenu as MobileMenuProps } from '../typings';
 import { FiMenu, FiX } from 'react-icons/fi';
 import LanguageDropdown from './LanguageDropdown';
 import { motion } from 'framer-motion';
+import CategoriesList from './CategoriesList';
 
 const MobileMenu = ({
   categories,
@@ -31,6 +32,8 @@ const MobileMenu = ({
       },
     },
   };
+  const menuIcon = isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />;
+
   return (
     <div className="md:hidden">
       <motion.button
@@ -40,7 +43,7 @@ const MobileMenu = ({
         initial={false}
         animate={menuAnimation ? 'open' : 'closed'}
       >
-        {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        {menuIcon}
       </motion.button>
       {isMenuOpen && (
         <motion.div
@@ -56,13 +59,7 @@ const MobileMenu = ({
             <li>
               <Link href="/">Home</Link>
             </li>
-            {categories?.map((category: any) => (
-              <li key={category.subtitle}>
-                <Link href={`/categories/` + category.title}>
-                  {category.subtitle}
-                </Link>
-              </li>
-            ))}
+            <CategoriesList categories={categories} />
             <li>
               <Link href="/contact">{contact ? contact[0]?.subtitle : ''}</Link>
             </li>
