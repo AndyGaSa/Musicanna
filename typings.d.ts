@@ -35,6 +35,24 @@ export interface headerProps {
   categories: [{ title; subtitle }];
   contact: [{ title; subtitle; body? }];
 }
+
+export interface DesktopMenu extends headerProps {
+  setDropdownOpen: any;
+  dropdownOpen: any;
+  currentLocaleSvg: any;
+  changeLanguage: any;
+}
+
+export interface MobileMenu extends headerProps {
+  setDropdownOpen: any;
+  dropdownOpen: any;
+  toggleMenu: any;
+  menuAnimation: any;
+  isMenuOpen: any;
+  currentLocaleSvg: any;
+  changeLanguage: any;
+}
+
 export interface bannerBottomProps {
   homeText: [{ title; subtitle }];
 }
