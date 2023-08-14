@@ -54,6 +54,17 @@ const Header = ({ categories, contact }: headerProps) => {
     setLocaleSvg(selectFlagImage(router.locale as LocaleValues));
   }, [router.locale]);
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsMenuOpen(false); // Close the menu whenever route changes
+    };
+    router.events.on('routeChangeStart', handleRouteChange);
+    // Cleanup subscription on unmount
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <header className="w-full border-b-[1px] border-b-black font-titleFont sticky top-0 bg-white z-50">
       <div className="relative max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
