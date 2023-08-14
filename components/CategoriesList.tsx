@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Category } from '../typings';
+import ActiveLink from './ActiveLink';
 
 interface CategoriesListProps {
   categories: Category[];
@@ -10,9 +11,12 @@ const CategoriesList: React.FC<CategoriesListProps> = ({ categories }) => {
     <>
       {categories?.map((category) => (
         <li key={category.subtitle}>
-          <Link href={`/categories/` + category.title}>
-            {category.subtitle}
-          </Link>
+          <ActiveLink
+            href={`/categories/` + encodeURIComponent(category.title)}
+            activeClassName={'text-bannerColor font-bold'}
+          >
+            <span> {category.subtitle}</span>
+          </ActiveLink>
         </li>
       ))}
     </>

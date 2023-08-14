@@ -4,6 +4,7 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import LanguageDropdown from './LanguageDropdown';
 import { motion } from 'framer-motion';
 import CategoriesList from './CategoriesList';
+import ActiveLink from './ActiveLink';
 
 const MobileMenu = ({
   categories,
@@ -57,11 +58,15 @@ const MobileMenu = ({
             aria-label="menu"
           >
             <li>
-              <Link href="/">Home</Link>
+              <ActiveLink href="/" activeClassName="text-bannerColor ">
+                <span>Home</span>
+              </ActiveLink>
             </li>
             <CategoriesList categories={categories} />
             <li>
-              <Link href="/contact">{contact ? contact[0]?.subtitle : ''}</Link>
+              <ActiveLink href="/contact" activeClassName="text-bannerColor ">
+                <span>{contact ? contact[0]?.subtitle : ''}</span>
+              </ActiveLink>
             </li>
             <li className="flex space-x-6">
               <LanguageDropdown
