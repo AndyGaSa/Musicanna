@@ -7,9 +7,7 @@ import catSvg from '../public/cat.svg';
 import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
 import frSvg from '/public/fr.svg';
-import { RiArrowDropDownLine } from 'react-icons/ri';
 import { headerProps } from '../typings';
-import { motion } from 'framer-motion';
 import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 
