@@ -42,35 +42,35 @@
 .cloud-2,
 .cloud-3,
 .cloud-4 {
-  animation-duration: linear infinite;
+  animation-duration: linear infinite ease-in-out; /* Smoothed animations */
   transform-origin: center;
 }
 
 .cloud-1 {
-  top: 50px;
-  animation-name: animate-1;
-  animation-duration: 32s;
+  top: 5vh;
+  animation-name: moveCloud1;
+  animation-duration: 60s;
   transform: scale(0.65);
 }
 
 .cloud-2 {
-  top: 150px;
-  animation-name: animate-2;
-  animation-duration: 37s;
+  top: 20vh;
+  animation-name: moveCloud2;
+  animation-duration: 45s;
   transform: scale(0.45);
 }
 
 .cloud-3 {
-  top: 215px;
-  animation-name: animate-3;
-  animation-duration: 45s;
+  top: 35vh;
+  animation-name: moveCloud3;
+  animation-duration: 50s;
   transform: scale(0.5);
 }
 
 .cloud-4 {
-  top: 40vh;
-  animation-name: animate-4;
-  animation-duration: 50s;
+  top: 50vh;
+  animation-name: moveCloud4;
+  animation-duration: 55s;
   transform: scale(0.4);
 }
 
@@ -109,65 +109,44 @@
   border-radius: 200px;
 }
 
-/* KEYFRAMES */
-
-@keyframes animate-1 {
-  0% {
-    left: 90%;
-  }
-  10% {
-    left: 110%;
-  }
-  10.001% {
-    left: -10%;
-  }
+/* Updated Keyframes for more natural movement */
+@keyframes moveCloud1 {
+  0%,
   100% {
-    left: 90%;
+    left: -20%;
+  }
+  50% {
+    left: 110%;
   }
 }
 
-@keyframes animate-2 {
-  0% {
-    left: 75%;
-  }
-  25% {
-    left: 110%;
-  }
-  25.001% {
-    left: -10%;
-  }
+@keyframes moveCloud2 {
+  0%,
   100% {
-    left: 75%;
+    left: 120%;
+  }
+  50% {
+    left: -20%;
   }
 }
 
-@keyframes animate-3 {
-  0% {
-    left: 60%;
-  }
-  40% {
-    left: 110%;
-  }
-  40.001% {
-    left: -10%;
-  }
+@keyframes moveCloud3 {
+  0%,
   100% {
-    left: 60%;
+    left: -30%;
+  }
+  50% {
+    left: 120%;
   }
 }
 
-@keyframes animate-4 {
-  0% {
-    left: 45%;
-  }
-  55% {
-    left: 110%;
-  }
-  55.001% {
-    left: -10%;
-  }
+@keyframes moveCloud4 {
+  0%,
   100% {
-    left: 45%;
+    left: 140%;
+  }
+  50% {
+    left: -30%;
   }
 }
 
@@ -200,6 +179,7 @@
     right: 10px;
   }
 }
+
 /* Responsive media query */
 @media screen and (max-width: 767px) {
   .cloud {
