@@ -22,7 +22,7 @@ const BannerBottom: React.FC<bannerBottomProps> = ({ homeText }) => {
         <Cloud cloudClass="cloud-3" />
         <Cloud cloudClass="cloud-4" />
       </div>
-      <div className="w-full lg:w-[60%] flex flex-col gap-3">
+      <div className="w-full relative lg:w-[60%] flex flex-col gap-3 z-51">
         {title && <h3 className="font-bold text-xl md:text-3xl">{title}</h3>}
         {subtitle && <h4 className="text-xl text-white/80">{subtitle}</h4>}
       </div>

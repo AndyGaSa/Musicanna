@@ -54,14 +54,14 @@
 }
 
 .cloud-2 {
-  top: 40vh;
+  top: 150px;
   animation-name: animate-2;
   animation-duration: 37s;
   transform: scale(0.45);
 }
 
 .cloud-3 {
-  top: 20vh;
+  top: 215px;
   animation-name: animate-3;
   animation-duration: 45s;
   transform: scale(0.5);
