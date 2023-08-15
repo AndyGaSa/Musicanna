@@ -49,28 +49,28 @@
 .cloud-1 {
   top: 5vh;
   animation-name: moveCloud1;
-  animation-duration: 60s;
+  animation-duration: 90s;
   transform: scale(0.65);
 }
 
 .cloud-2 {
   top: 20vh;
   animation-name: moveCloud2;
-  animation-duration: 45s;
+  animation-duration: 70s;
   transform: scale(0.45);
 }
 
 .cloud-3 {
   top: 35vh;
   animation-name: moveCloud3;
-  animation-duration: 50s;
+  animation-duration: 80s;
   transform: scale(0.5);
 }
 
 .cloud-4 {
   top: 50vh;
   animation-name: moveCloud4;
-  animation-duration: 55s;
+  animation-duration: 75s;
   transform: scale(0.4);
 }
 
@@ -126,17 +126,16 @@
     left: 120%;
   }
   50% {
-    left: -20%;
   }
 }
 
 @keyframes moveCloud3 {
   0%,
   100% {
-    left: -30%;
+    left: 110%;
   }
   50% {
-    left: 120%;
+    left: -20%;
   }
 }
 
