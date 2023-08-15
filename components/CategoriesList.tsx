@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Category } from '../typings';
 import ActiveLink from './ActiveLink';
 

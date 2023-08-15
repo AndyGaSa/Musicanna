@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { MobileMenu as MobileMenuProps } from '../typings';
 import { FiMenu, FiX } from 'react-icons/fi';
 import LanguageDropdown from './LanguageDropdown';

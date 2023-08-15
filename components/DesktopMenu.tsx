@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { DesktopMenu as DesktopMenuProps } from '../typings';
 import LanguageDropdown from './LanguageDropdown';
 import CategoriesList from './CategoriesList';
