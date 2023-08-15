@@ -10,13 +10,7 @@ import frSvg from '/public/fr.svg';
 import { headerProps } from '../typings';
 import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
-
-export const enum LocaleValues {
-  es = 'es',
-  ca = 'ca',
-  eng = 'en',
-  fr = 'fr',
-}
+import { LocaleValues } from '../utils/localeConstants';
 
 const LOCALE_SVG_MAP = {
   [LocaleValues.es]: esSvg,

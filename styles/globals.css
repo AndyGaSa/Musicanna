@@ -16,6 +16,7 @@
 .language-selector,
 .cursor-pointer {
   -webkit-appearance: none;
+  appearance: none;
   background-color: inherit;
   box-shadow: none !important;
 }

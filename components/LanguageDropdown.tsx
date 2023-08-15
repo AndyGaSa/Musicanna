@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { motion } from 'framer-motion';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import catSvg from '../public/cat.svg';
+import catSvg from '/public/cat.svg';
 import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
 import frSvg from '/public/fr.svg';
-import { LocaleValues } from './Header';
+import { LocaleValues } from '../utils/localeConstants';
 
 interface LanguageDropdownProps {
   currentLocaleSvg: string;
@@ -14,12 +14,25 @@ interface LanguageDropdownProps {
   changeLanguage: (lang: LocaleValues) => void;
 }
 
-const LanguageDropdown = ({
+interface Language {
+  lang: LocaleValues;
+  flag: StaticImageData; // TypeScript typing for next/image
+  label: string;
+}
+
+const LANGUAGES: Language[] = [
+  { lang: LocaleValues.ca, flag: catSvg, label: 'Cat' },
+  { lang: LocaleValues.es, flag: esSvg, label: 'Es' },
+  { lang: LocaleValues.eng, flag: enSvg, label: 'Eng' },
+  { lang: LocaleValues.fr, flag: frSvg, label: 'Fr' },
+];
+
+const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   currentLocaleSvg,
   dropdownOpen,
   setDropdownOpen,
   changeLanguage,
-}: LanguageDropdownProps) => {
+}) => {
   return (
     <div className={`relative`}>
       <div
@@ -46,12 +59,7 @@ const LanguageDropdown = ({
           dropdownOpen ? `opacity-100 visible` : 'invisible opacity-0'
         } absolute px-4 z-40 w-46 rounded border-[.5px] border-dark bg-white py-5 shadow-card transition-all flex flex-col`}
       >
-        {[
-          { lang: LocaleValues.ca, flag: catSvg, label: 'Cat' },
-          { lang: LocaleValues.es, flag: esSvg, label: 'Es' },
-          { lang: LocaleValues.eng, flag: enSvg, label: 'Eng' },
-          { lang: LocaleValues.fr, flag: frSvg, label: 'Fr' },
-        ].map(({ lang, flag, label }) => (
+        {LANGUAGES.map(({ lang, flag, label }) => (
           <div
             key={label}
             className="flex hover:cursor-pointer"

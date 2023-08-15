@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring';
+import { LocaleValues } from '../utils/localeConstants';
 
 export interface Post {
   _id: string;
