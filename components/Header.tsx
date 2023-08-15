@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import logoDark from '../public/images/legacyLogo.png';
+import logoDark from '/public/images/legacyLogo.png';
 import { useRouter } from 'next/router';
-import catSvg from '../public/cat.svg';
+import catSvg from '/public/cat.svg';
 import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
 import frSvg from '/public/fr.svg';
