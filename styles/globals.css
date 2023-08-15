@@ -8,6 +8,11 @@
   }
 }
 
+:root {
+  --cloud-bg: #fff;
+  --cloud-shadow: 0 16px 16px rgba(0, 0, 0, 0.1);
+}
+
 .language-selector,
 .cursor-pointer {
   -webkit-appearance: none;
@@ -17,12 +22,12 @@
 
 .cloud-content {
   width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
   padding-top: 50px;
-  position: absolute;
-  right: 0;
-  top: 0;
   z-index: 0;
   overflow: hidden;
   overflow-x: hidden;
@@ -32,45 +37,41 @@
   position: absolute;
   opacity: 0.7;
 }
+
+.cloud-1,
+.cloud-2,
+.cloud-3,
+.cloud-4 {
+  animation-duration: linear infinite;
+  transform-origin: center;
+}
+
 .cloud-1 {
   top: 50px;
+  animation-name: animate-1;
+  animation-duration: 32s;
+  transform: scale(0.65);
 }
+
 .cloud-2 {
   top: 40vh;
+  animation-name: animate-2;
+  animation-duration: 37s;
+  transform: scale(0.45);
 }
+
 .cloud-3 {
   top: 20vh;
+  animation-name: animate-3;
+  animation-duration: 45s;
+  transform: scale(0.5);
 }
+
 .cloud-4 {
   top: 40vh;
-}
-
-.cloud-1 {
-  animation: animate-1 32s linear infinite;
-  -webkit-animation: animate-1 32s linear infinite;
-  transform: scale(0.65);
-  -webkit-transform: scale(0.65);
-}
-
-.cloud-2 {
-  animation: animate-2 37s linear infinite;
-  -webkit-animation: animate-2 37s linear infinite;
-  transform: scale(0.45);
-  -webkit-transform: scale(0.45);
-}
-
-.cloud-3 {
-  animation: animate-3 45s linear infinite;
-  -webkit-animation: animate-3 45s linear infinite;
-  transform: scale(0.5);
-  -webkit-transform: scale(0.5);
-}
-
-.cloud-4 {
-  animation: animate-4 50s linear infinite;
-  -webkit-animation: animate-4 50s linear infinite;
+  animation-name: animate-4;
+  animation-duration: 50s;
   transform: scale(0.4);
-  -webkit-transform: scale(0.4);
 }
 
 /* Cloud Objects */
@@ -79,15 +80,14 @@
   width: 350px;
   height: 120px;
   border-radius: 100px;
-  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 16px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--cloud-shadow);
   position: absolute;
-  background: #fff;
+  background: var(--cloud-bg);
 }
 
 .cloud:after,
 .cloud:before {
-  background: #fff;
+  background: var(--cloud-bg);
   content: '';
   position: absolute;
   z-index: -1;
