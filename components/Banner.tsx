@@ -60,7 +60,7 @@ const Banner: React.FC<BannerProps> = ({ images }) => {
   };
 
   return (
-    <div className="w-full h-auto lg:h-[550px] relative">
+    <div className="w-full h-auto lg:h-[50vh] relative">
       <Slider {...settings} className="flex flex-col">
         {images.map((image, index) => {
           const imageUrl = urlFor(image.image)
@@ -69,7 +69,7 @@ const Banner: React.FC<BannerProps> = ({ images }) => {
             .url();
 
           return (
-            <div className="lg:h-[600px]" key={image._id}>
+            <div className="lg:h-[50vh]" key={image._id}>
               <Image
                 className="xl:h-[68vh] h-[50vh] w-full object-cover"
                 src={imageUrl}
