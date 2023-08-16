@@ -9,7 +9,6 @@ export interface Post {
     name: string;
     image: string;
   };
-  //comments: Comment[];
   description: string;
   mainImage: {
     asset: {
@@ -28,14 +27,20 @@ export interface Category {
   subtitle?: string;
 }
 
+export interface Contact {
+  title: string;
+  subtitle: string;
+  body?: any;
+}
+
 export interface ServiceError {
   statusCode: number;
   message: string;
 }
 
 export interface headerProps {
-  categories: { title: string; subtitle: string }[];
-  contact: { title: string; subtitle: string; body?: any }[];
+  categories: Category[];
+  contact: Contact[];
 }
 
 export interface CommonMenuProps extends headerProps {
