@@ -36,7 +36,7 @@ const SEOHead = ({ title }: { title?: string }) => (
   </Head>
 );
 
-const IMAGE_WIDTH_HEIGHT = 400;
+const IMAGE_WIDTH_HEIGHT = 500;
 
 const Categories: React.FC<categoriesProps> = ({
   posts,
