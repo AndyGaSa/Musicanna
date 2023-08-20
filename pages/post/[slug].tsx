@@ -49,15 +49,12 @@ const PostPage: React.FC<PostPageProps> = ({
             <h2 className="font-bodyFont  text-[18px] text-gray-500 mb-2">
               {post.description}
             </h2>
-
-            <div>
-              <PortableText
-                dataset={SANITY_DATASET}
-                projectId={SANITY_PROJECT_ID}
-                content={post.body}
-                serializers={serializers}
-              />
-            </div>
+            <PortableText
+              dataset={SANITY_DATASET}
+              projectId={SANITY_PROJECT_ID}
+              content={post.body}
+              serializers={serializers}
+            />
           </article>
         </section>
         <Footer />
