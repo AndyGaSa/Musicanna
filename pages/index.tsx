@@ -10,6 +10,11 @@ import { indexProps } from '../typings';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
 
+const MIN_DESCRIPTION_LENGTH = 0;
+const MAX_DESCRIPTION_LENGTH = 60;
+const IMAGE_WIDTH = 380;
+const IMAGE_HEIGHT = 350;
+
 const Home: React.FC<indexProps> = ({
   posts,
   bannerImages,
@@ -41,9 +46,14 @@ const Home: React.FC<indexProps> = ({
               <div className="border-[1px] border-secondaryColor border-opacity-40 h-[450px] group">
                 <div className="h-4/6 w-full overflow-hidden">
                   <Image
-                    width={380}
-                    height={350}
-                    src={urlFor(post.mainImage)?.url()!}
+                    width={IMAGE_WIDTH}
+                    height={IMAGE_HEIGHT}
+                    src={
+                      urlFor(post.mainImage)
+                        ?.width(IMAGE_WIDTH)
+                        .height(IMAGE_HEIGHT)
+                        .url()!
+                    }
                     alt={post.title}
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-100 duration-300 group-hover:scale-110"
                   />
@@ -53,7 +63,11 @@ const Home: React.FC<indexProps> = ({
                     <p>{post.title}</p>
                   </div>
                   <p className="py-2 px-4 text-base">
-                    {post.description?.substring(0, 60)}... by -{' '}
+                    {post.description?.substring(
+                      MIN_DESCRIPTION_LENGTH,
+                      MAX_DESCRIPTION_LENGTH
+                    )}
+                    ... by -{' '}
                     <span className="font-semibold">{post.author?.name}</span>
                   </p>
                 </div>
