@@ -5,7 +5,7 @@ import catSvg from '/public/cat.svg';
 import esSvg from '/public/es.svg';
 import enSvg from '/public/en.svg';
 import frSvg from '/public/fr.svg';
-import { LocaleValues } from '../utils/localeConstants';
+import { LocaleValues } from '../constants/localeConstants';
 
 interface LanguageDropdownProps {
   currentLocaleSvg: string;

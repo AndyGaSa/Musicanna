@@ -6,34 +6,42 @@ import { Post, headerProps, Params } from '../../typings';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import PortableText from 'react-portable-text';
-import Head from 'next/head';
+import SEOHead from '../../components/SeoHead';
+import serializers, {
+  SANITY_DATASET,
+  SANITY_PROJECT_ID,
+} from '../../constants/portableTextSerializers';
 
-interface Props {
+interface PostPageProps {
   post: Post;
   headerProps: headerProps;
 }
 
-const Post: React.FC<Props> = ({
+const IMAGE_WIDTH_HEIGHT = 720;
+
+const PostPage: React.FC<PostPageProps> = ({
   post,
   headerProps: { categories, contact },
-}: Props) => {
+}: PostPageProps) => {
   return (
     <div>
-      <Head>
-        <title>Musicanna</title>
-        <link rel="icon" href="/smallLogo.ico" />
-      </Head>
+      <SEOHead title={post.title} />
       <main className="font-bodyFont">
         <Header categories={categories} contact={contact} />
         <Image
           className="h-96 w-full object-cover"
-          src={urlFor(post.mainImage).url()!}
+          src={
+            urlFor(post.mainImage)
+              ?.width(IMAGE_WIDTH_HEIGHT)
+              .height(IMAGE_WIDTH_HEIGHT)
+              .url()!
+          }
           alt={post.title}
-          width={720}
-          height={720}
+          width={IMAGE_WIDTH_HEIGHT}
+          height={IMAGE_WIDTH_HEIGHT}
           priority
         />
-        <div className="max-w-3xl mx-auto">
+        <section className="max-w-3xl mx-auto">
           <article className="w-full mx-auto p-5 bg-secondaryColor/10">
             <h1 className="font-titleFont font-medium text-[32px] text-primary border-b-[1px] border-b-cyan-800 mt-10 mb-3">
               {post.title}
@@ -42,70 +50,23 @@ const Post: React.FC<Props> = ({
               {post.description}
             </h2>
 
-            <div className="">
+            <div>
               <PortableText
-                dataset={process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}
-                projectId={
-                  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'u8imjmtp'
-                }
+                dataset={SANITY_DATASET}
+                projectId={SANITY_PROJECT_ID}
                 content={post.body}
-                serializers={{
-                  h1: (props: any) => (
-                    <h1
-                      className="text-3xl font-bold my-5 font-titleFont"
-                      {...props}
-                    />
-                  ),
-                  h2: (props: any) => (
-                    <h2
-                      className="text-2xl font-bold my-5 font-titleFont"
-                      {...props}
-                    />
-                  ),
-                  h3: (props: any) => (
-                    <h3
-                      className="text-2xl font-bold my-5 font-titleFont"
-                      {...props}
-                    />
-                  ),
-                  normal: (props: any) => <p className="my-4" {...props} />,
-                  li: ({ children }: any) => (
-                    <li className="ml-4 list-disc">{children}</li>
-                  ),
-                  link: ({ href, children }: any) => (
-                    <a href={href} className="text-cyan-500 hover:underline">
-                      {children}
-                    </a>
-                  ),
-                  inlineAudio: (value: any) => {
-                    const ref = value.asset._ref;
-                    const projeccId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-                    const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
-
-                    const [_file, id, extension] = ref.split('-');
-                    const audioUrl = `https://cdn.sanity.io/files/${projeccId}/${dataset}/${id}.${extension}`;
-
-                    return (
-                      <audio
-                        controls
-                        className="block w-full max-w-md mx-auto mt-10"
-                      >
-                        <source src={audioUrl} type="audio/mpeg" />
-                      </audio>
-                    );
-                  },
-                }}
+                serializers={serializers}
               />
             </div>
           </article>
-        </div>
+        </section>
         <Footer />
       </main>
     </div>
   );
 };
 
-export default Post;
+export default PostPage;
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const query = `*[_type == "post"]{
@@ -130,7 +91,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   };
 };
 
-export const getStaticProps: GetStaticProps<Props, Params> = async (
+export const getStaticProps: GetStaticProps<PostPageProps, Params> = async (
   context
 ) => {
   const { slug } = context.params!;
