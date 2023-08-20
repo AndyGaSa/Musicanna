@@ -80,3 +80,17 @@ export interface categoriesProps {
 export interface Params extends ParsedUrlQuery {
   category: string;
 }
+
+export interface NoPostsProps {
+  categories: Category[];
+  contact: Contact[];
+}
+
+export interface PostsProps {
+  posts: Post[];
+}
+
+export interface CategoryHeaderProps {
+  categoryTitle: string;
+  categoryDescription: any;
+}
