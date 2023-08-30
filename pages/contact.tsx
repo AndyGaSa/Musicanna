@@ -13,6 +13,10 @@ import serializers, {
   SANITY_PROJECT_ID,
 } from '../constants/portableTextSerializers';
 
+interface Props {
+  headerProps: headerProps;
+}
+
 const Contact: React.FC<Props> = ({
   headerProps: { categories, contact },
 }: Props) => {
