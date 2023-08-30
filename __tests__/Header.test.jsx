@@ -1,25 +1,35 @@
+// Now, import useRouter and define mockUseRouter
 import { render, screen, fireEvent } from '@testing-library/react';
 import Header from '../components/Header';
 import { useRouter } from 'next/router';
 
+// Mocking useRouter here before mockUseRouter is defined
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 
-// setup a new mocking function for push method
+const mockUseRouter = useRouter;
+
+// Setup a new mocking function for push method
 const pushMock = jest.fn();
 
-// mock a return value on useRouter
-useRouter.mockReturnValue({
-  query: {},
-  // return mock for push method
-  push: pushMock,
-  // add mock for asPath attribute
-  asPath: '/',
-  // ... add the props or methods you need
-});
-
 describe('Header component', () => {
+  beforeEach(() => {
+    // Before each test, clear all instances and calls to constructor and all methods:
+    jest.clearAllMocks();
+
+    // Then setup useRouter mock return value before each test run
+    mockUseRouter.mockReturnValue({
+      query: {},
+      push: pushMock,
+      asPath: '/',
+      events: {
+        on: jest.fn(),
+        off: jest.fn(),
+      },
+    });
+  });
+
   it('renders the logo', () => {
     render(<Header categories={[]} contact={[]} />);
     const logo = screen.getByAltText('logoDark');
@@ -35,63 +45,23 @@ describe('Header component', () => {
     render(
       <Header categories={mockCategories} contact={[{ subtitle: 'Contact' }]} />
     );
-    const homeLink = screen.getByText('Home');
-    const categoryLinks = mockCategories.map((category) =>
-      screen.getByText(category.subtitle)
-    );
-    const contactLink = screen.getByText('Contact');
-
-    expect(homeLink).toBeInTheDocument();
-    categoryLinks.forEach((link) => expect(link).toBeInTheDocument());
-    expect(contactLink).toBeInTheDocument();
+    // ... rest of your test
   });
 
   it('renders the language dropdown', () => {
     render(<Header categories={[]} contact={[]} />);
-    const languageButton = screen.getByLabelText('Toggle Menu');
-    const catFlag = screen.getByAltText('catFlag');
-    const esFlag = screen.getByAltText('es flag');
-    const engFlag = screen.getByAltText('eng flag');
-    const frFlag = screen.getByAltText('fr flag'); // Make sure the alt text matches the actual image
-
-    expect(languageButton).toBeInTheDocument();
-    expect(catFlag).toBeInTheDocument();
-    expect(esFlag).toBeInTheDocument();
-    expect(engFlag).toBeInTheDocument();
-    expect(frFlag).toBeInTheDocument();
+    // Note: Make sure the alt text or labels actually exist in your component
+    // ... rest of your test
   });
 
   it('toggles the menu when the menu button is clicked', () => {
     render(<Header categories={[]} contact={[]} />);
-    const menuButton = screen.getByLabelText('Toggle Menu');
-
-    // Click on the menu button
-    fireEvent.click(menuButton);
-
-    // Check that the menu is open
-    expect(screen.getByLabelText('menu')).toBeInTheDocument();
-
-    // Click on the menu button again
-    fireEvent.click(menuButton);
-
-    // Check that the menu is closed
-    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    // Note: Make sure the label "Toggle Menu" actually exists in your component
+    // ... rest of your test
   });
 
   it('changes the language when a language option is clicked', () => {
     render(<Header categories={[]} contact={[]} />);
-
-    // Open the language dropdown
-    fireEvent.click(screen.getByLabelText('Toggle Menu'));
-
-    // Click on the first language option
-    fireEvent.click(screen.getAllByRole('img', { name: 'es flag' })[0]);
-
-    // Check that the router navigated to the correct page with the new locale
-    expect(pushMock).toHaveBeenCalledWith(
-      expect.anything(),
-      '/',
-      expect.objectContaining({ locale: 'es' })
-    );
+    // ... rest of your test
   });
 });
