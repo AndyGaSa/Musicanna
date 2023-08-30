@@ -9,7 +9,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: '!NO TOCAR!',
+      description: '!NO TOCAR! Escriure minuscules',
     }),
     defineField({
       name: 'language',
