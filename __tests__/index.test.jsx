@@ -7,11 +7,17 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 
+const mockRouterEvents = {
+  on: jest.fn(),
+  off: jest.fn(),
+};
+
 describe('Home', () => {
   beforeEach(() => {
     // Provide a mock implementation of the useRouter hook
     useRouter.mockImplementation(() => ({
       asPath: '/test-path',
+      events: mockRouterEvents,
       // Add any other properties or methods that your component needs
     }));
   });
